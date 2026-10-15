@@ -74,6 +74,10 @@ h1{font:400 56px/1.1 var(--serif);letter-spacing:-.03em;color:var(--ink-strong);
 .list a{color:var(--ink-strong);text-decoration:none;font-family:var(--mono);font-size:13px;padding:8px 0;direction:ltr;unicode-bidi:isolate}
 .list a:hover{text-decoration:underline}
 .empty{color:var(--muted)}
+.search{width:100%;min-height:48px;padding:12px 16px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--ink-strong);font:inherit;font-size:16px}
+.search:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.qres{margin-top:12px;min-height:24px;font-size:14px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.list li.more{justify-content:center;border-bottom:0}
 h2{font:400 32px/1.1 var(--serif);letter-spacing:-.02em;color:var(--ink-strong);margin:64px 0 16px}
 details{border-bottom:1px solid var(--line);padding:16px 0}
 summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;font-weight:600;color:var(--ink-strong)}
@@ -156,9 +160,11 @@ footer a{color:var(--ink-strong);font-weight:600}
       <div class="card span2"><div class="eyebrow" data-t="kFol"></div><div class="num" id="nFollowers">0</div><div class="delta" id="dFollowers"></div></div>
       <div class="card span2"><div class="eyebrow" data-t="kNew"></div><div class="num" id="nNew" style="color:var(--green)">0</div><div class="delta" id="since"></div></div>
       <div class="card span2"><div class="eyebrow" data-t="kLost"></div><div class="num" id="nLost" style="color:var(--red)">0</div><div class="delta" data-t="sinceLast"></div></div>
+      <div class="card span6"><input type="search" class="search" id="q" data-tp="qPh" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="31"><div class="qres" id="qRes" aria-live="polite"></div></div>
       <div class="card span3"><span class="tag t-green" data-t="tNew"></span><ul class="list" id="lNew"></ul></div>
       <div class="card span3"><span class="tag t-red" data-t="tLost"></span><ul class="list" id="lLost"></ul></div>
       <div class="card span6" id="cNot"><span class="tag t-yellow" data-t="tNot"></span> <span class="eyebrow" id="nNot"></span><ul class="list" id="lNot"></ul></div>
+      <div class="card span6" id="cFans"><span class="tag t-blue" data-t="tFans"></span> <span class="eyebrow" id="nFans"></span><ul class="list" id="lFans"></ul></div>
     </div>
   </section>
 
@@ -384,6 +390,24 @@ ko:{s2b:"30초 기다리기",s2s:"메뉴에서 나갔다가 다시 들어가면 
 id:{s2b:"Tunggu 30 detik",s2s:"Keluar dari menu itu lalu masuk lagi: “Unduh” akan muncul.",a1w:"<li>Tunggu sekitar <b>30 detik</b>. Layar tidak menyegarkan sendiri dan tampak masih diproses: <b>keluar dari menu itu lalu masuk lagi</b>. Tombol <b>Unduh</b> akan ada.</li>",
  made:"Dibuat oleh {a}.",credit:"Bebas dipakai, disalin, dan diubah, asalkan mencantumkan pembuatnya ({a}) dan menyertakan pemberitahuan ini (Lisensi MIT).",legal:"Proyek independen, tidak terkait dengan Instagram atau Meta. Disediakan “apa adanya” tanpa jaminan: setiap orang bertanggung jawab atas penggunaannya, dan pembuat tidak bertanggung jawab atas kerusakan, kehilangan data, atau akibat pada akun siapa pun."}
 };
+// Search and extra lists
+const EXTRA2={
+es:{qPh:"Buscar un usuario, p. ej. @nombre",tFans:"Te siguen y tú no",more:"Mostrar más ({n} restantes)",noMatch:"Nadie coincide con la búsqueda.",stBoth:"Os seguís mutuamente",stThey:"Te sigue, pero tú no",stFol:"Te sigue",stYou:"Lo sigues, pero no te sigue",stNone:"No aparece en tus seguidores ni seguidos.",stNew:"Nuevo desde la última vez",stLost:"Te dejó de seguir",matches:"Coincidencias: {n}. Mira las listas de abajo.",allFans:"Sigues a todos los que te siguen."},
+en:{qPh:"Search a user, e.g. @name",tFans:"Follow you, you don't follow back",more:"Show more ({n} left)",noMatch:"No one matches your search.",stBoth:"You follow each other",stThey:"Follows you, you don't follow back",stFol:"Follows you",stYou:"You follow them, they don't follow back",stNone:"Not in your followers or following.",stNew:"New since last time",stLost:"Unfollowed you",matches:"Matches: {n}. See the lists below.",allFans:"You follow everyone who follows you."},
+pt:{qPh:"Buscar um usuário, ex. @nome",tFans:"Te seguem e você não",more:"Mostrar mais ({n} restantes)",noMatch:"Ninguém corresponde à busca.",stBoth:"Vocês se seguem",stThey:"Te segue, mas você não",stFol:"Te segue",stYou:"Você segue, mas não te segue",stNone:"Não está nos seus seguidores nem seguindo.",stNew:"Novo desde a última vez",stLost:"Deixou de te seguir",matches:"Resultados: {n}. Veja as listas abaixo.",allFans:"Você segue todos que te seguem."},
+fr:{qPh:"Rechercher un compte, ex. @nom",tFans:"Vous suivent, sans retour",more:"Afficher plus ({n} restants)",noMatch:"Aucun résultat.",stBoth:"Vous vous suivez mutuellement",stThey:"Vous suit, mais pas vous",stFol:"Vous suit",stYou:"Vous le suivez, sans retour",stNone:"Absent de vos abonnés et abonnements.",stNew:"Nouveau depuis la dernière fois",stLost:"Ne vous suit plus",matches:"Résultats : {n}. Voir les listes ci-dessous.",allFans:"Vous suivez tous vos abonnés."},
+de:{qPh:"Konto suchen, z. B. @name",tFans:"Folgen dir, du ihnen nicht",more:"Mehr anzeigen ({n} übrig)",noMatch:"Keine Treffer.",stBoth:"Ihr folgt euch gegenseitig",stThey:"Folgt dir, du ihm nicht",stFol:"Folgt dir",stYou:"Du folgst, aber nicht zurück",stNone:"Weder Follower noch gefolgt.",stNew:"Neu seit dem letzten Mal",stLost:"Folgt dir nicht mehr",matches:"Treffer: {n}. Siehe Listen unten.",allFans:"Du folgst allen, die dir folgen."},
+it:{qPh:"Cerca un utente, es. @nome",tFans:"Ti seguono e tu no",more:"Mostra altri ({n} rimanenti)",noMatch:"Nessun risultato.",stBoth:"Vi seguite a vicenda",stThey:"Ti segue, ma tu no",stFol:"Ti segue",stYou:"Lo segui, ma non ti segue",stNone:"Non è tra follower né seguiti.",stNew:"Nuovo dall'ultima volta",stLost:"Ha smesso di seguirti",matches:"Risultati: {n}. Guarda le liste sotto.",allFans:"Segui tutti quelli che ti seguono."},
+ru:{qPh:"Найти пользователя, напр. @имя",tFans:"Подписаны на вас, вы — нет",more:"Показать ещё (осталось {n})",noMatch:"Ничего не найдено.",stBoth:"Взаимная подписка",stThey:"Подписан на вас, вы — нет",stFol:"Подписан на вас",stYou:"Вы подписаны, он — нет",stNone:"Нет ни в подписчиках, ни в подписках.",stNew:"Новый с прошлого раза",stLost:"Отписался",matches:"Совпадений: {n} — смотрите списки ниже.",allFans:"Вы подписаны на всех своих подписчиков."},
+tr:{qPh:"Kullanıcı ara, ör. @isim",tFans:"Seni takip ediyor, sen etmiyorsun",more:"Daha fazla göster ({n} kaldı)",noMatch:"Eşleşen yok.",stBoth:"Karşılıklı takip",stThey:"Seni takip ediyor, sen etmiyorsun",stFol:"Seni takip ediyor",stYou:"Sen takip ediyorsun, o etmiyor",stNone:"Takipçilerinde veya takip ettiklerinde yok.",stNew:"Son seferden beri yeni",stLost:"Takibi bıraktı",matches:"Eşleşme: {n}. Aşağıdaki listelere bak.",allFans:"Seni takip eden herkesi takip ediyorsun."},
+ar:{qPh:"ابحث عن مستخدم، مثل ‎@name",tFans:"يتابعونك ولا تتابعهم",more:"عرض المزيد (متبقٍ {n})",noMatch:"لا توجد نتائج.",stBoth:"متابعة متبادلة",stThey:"يتابعك ولا تتابعه",stFol:"يتابعك",stYou:"تتابعه ولا يتابعك",stNone:"غير موجود في المتابِعين أو المتابَعين.",stNew:"جديد منذ آخر مرة",stLost:"ألغى متابعتك",matches:"{n} حسابات مطابقة: انظر القوائم أدناه.",allFans:"أنت تتابع كل من يتابعك."},
+hi:{qPh:"यूज़र खोजें, जैसे @name",tFans:"आपको फ़ॉलो करते हैं, आप नहीं",more:"और दिखाएँ ({n} बाकी)",noMatch:"कोई मेल नहीं मिला।",stBoth:"आप एक-दूसरे को फ़ॉलो करते हैं",stThey:"आपको फ़ॉलो करता है, आप नहीं",stFol:"आपको फ़ॉलो करता है",stYou:"आप फ़ॉलो करते हैं, वह नहीं",stNone:"फ़ॉलोअर्स या फ़ॉलोइंग में नहीं है।",stNew:"पिछली बार से नया",stLost:"अनफ़ॉलो कर दिया",matches:"{n} अकाउंट मेल खाते हैं: नीचे की सूचियाँ देखें।",allFans:"आप अपने सभी फ़ॉलोअर्स को फ़ॉलो करते हैं।"},
+zh:{qPh:"搜索用户，例如 @name",tFans:"关注你但你未回关",more:"显示更多（还剩 {n}）",noMatch:"没有匹配结果。",stBoth:"互相关注",stThey:"关注了你，你未回关",stFol:"关注了你",stYou:"你关注了TA，TA未回关",stNone:"不在你的粉丝或关注中。",stNew:"上次以来新增",stLost:"取消关注了你",matches:"{n} 个账号匹配：见下方列表。",allFans:"你已回关所有粉丝。"},
+ja:{qPh:"ユーザーを検索（例：@name）",tFans:"フォローされているがフォローしていない",more:"もっと見る（残り{n}）",noMatch:"一致する人はいません。",stBoth:"相互フォロー",stThey:"フォローされているが、フォローしていない",stFol:"フォローされています",stYou:"フォローしているが、フォローされていない",stNone:"フォロワーにもフォロー中にもいません。",stNew:"前回から新しく",stLost:"フォローを外しました",matches:"{n}件一致：下のリストを見てください。",allFans:"フォロワー全員をフォローしています。"},
+ko:{qPh:"사용자 검색, 예: @name",tFans:"나를 팔로우하지만 나는 안 함",more:"더 보기 ({n}개 남음)",noMatch:"일치하는 사람이 없어요.",stBoth:"맞팔로우",stThey:"나를 팔로우하지만 나는 안 함",stFol:"나를 팔로우함",stYou:"내가 팔로우하지만 맞팔 안 함",stNone:"팔로워나 팔로잉에 없어요.",stNew:"지난번 이후 새로 팔로우",stLost:"언팔로우함",matches:"{n}개 계정 일치: 아래 목록을 보세요.",allFans:"나를 팔로우하는 모두를 팔로우하고 있어요."},
+id:{qPh:"Cari pengguna, mis. @nama",tFans:"Mengikutimu, kamu tidak",more:"Tampilkan lagi ({n} tersisa)",noMatch:"Tidak ada yang cocok.",stBoth:"Saling mengikuti",stThey:"Mengikutimu, kamu tidak",stFol:"Mengikutimu",stYou:"Kamu ikuti, dia tidak",stNone:"Tidak ada di pengikut maupun yang diikuti.",stNew:"Baru sejak terakhir kali",stLost:"Berhenti mengikutimu",matches:"Cocok: {n}. Lihat daftar di bawah.",allFans:"Kamu mengikuti semua pengikutmu."}
+};
+for(const[c,x]of Object.entries(EXTRA2))Object.assign(I18N[c],x);
 for(const[c,x]of Object.entries(EXTRA)){const{a1w,...rest}=x;Object.assign(I18N[c],rest);I18N[c].a1+=a1w}
 const AUTHOR='SamuTecYT',REPO='https://github.com/SamuTecYT/follower-diff';
 const RTL=new Set(['ar']);
@@ -399,6 +423,7 @@ function applyLang(code){
   L=I18N[code]?code:'en';
   const root=document.documentElement;root.lang=L;root.dir=RTL.has(L)?'rtl':'ltr';
   document.querySelectorAll('[data-t]').forEach(el=>el.textContent=t(el.dataset.t));
+  document.querySelectorAll('[data-tp]').forEach(el=>{el.placeholder=t(el.dataset.tp);el.setAttribute('aria-label',t(el.dataset.tp))});
   document.querySelectorAll('[data-th]').forEach(el=>el.innerHTML=t(el.dataset.th)); // static developer strings only
   $('langSel').value=L;
   // Footer: the author's name becomes a link to the project
@@ -483,10 +508,31 @@ async function handle(files){
   finally{drop.classList.remove('busy')}
 }
 
-// Lists are built without innerHTML: file content is never interpreted as code
-function list(el,arr,emptyKey){
-  el.replaceChildren(...(arr.length?arr.map(u=>{const li=document.createElement('li'),a=document.createElement('a');a.href='https://instagram.com/'+encodeURIComponent(u);a.target='_blank';a.rel='noopener noreferrer';a.textContent='@'+u;li.append(a);return li})
-    :[Object.assign(document.createElement('li'),{className:'empty',textContent:t(emptyKey)})]));
+// Lists are built without innerHTML: file content is never interpreted as code.
+// Big accounts: only PAGE rows are drawn at a time, plus a "show more" button.
+const PAGE=100,LISTS={};
+function list(el,arr,emptyKey){LISTS[el.id]={el,arr,emptyKey,lim:PAGE};draw(el.id)}
+function draw(id){
+  const s=LISTS[id],q=query(),arr=q?s.arr.filter(u=>u.includes(q)):s.arr,rows=arr.slice(0,s.lim).map(u=>{const li=document.createElement('li'),a=document.createElement('a');a.href='https://instagram.com/'+encodeURIComponent(u);a.target='_blank';a.rel='noopener noreferrer';a.textContent='@'+u;li.append(a);return li});
+  if(arr.length>s.lim){const li=document.createElement('li'),b=document.createElement('button');li.className='more';b.type='button';b.className='btn ghost small';b.textContent=t('more',{n:nf(arr.length-s.lim)});b.onclick=()=>{s.lim+=PAGE*5;draw(id)};li.append(b);rows.push(li)}
+  s.el.replaceChildren(...(rows.length?rows:[Object.assign(document.createElement('li'),{className:'empty',textContent:t(q&&s.arr.length?'noMatch':s.emptyKey)})]));
+}
+// Search: "@Name " -> "name"
+const query=()=>$('q').value.trim().replace(/^@+/,'').toLowerCase();
+let SETS=null;
+function search(){
+  for(const id in LISTS){LISTS[id].lim=PAGE;draw(id)}
+  const r=$('qRes'),q=query();r.replaceChildren();if(!q||!SETS)return;
+  const tag=(c,k)=>{const s=document.createElement('span');s.className='tag t-'+c;s.textContent=t(k);r.append(s)};
+  const{fol,ing,nw,lost}=SETS,f=fol.has(q),g=ing.has(q);
+  if(f||g||lost.has(q)){
+    const b=document.createElement('b');b.textContent='@'+q;r.append(b);
+    if(f&&g)tag('green','stBoth');else if(f)tag('blue',ing.size?'stThey':'stFol');else if(g)tag('yellow','stYou');else tag('red','stNone');
+    if(nw.has(q))tag('green','stNew');if(lost.has(q))tag('red','stLost');
+  }else{
+    let n=0;for(const u of new Set([...fol,...ing]))if(u.includes(q))n++;
+    r.append(t(n?'matches':'stNone',{n:nf(n)}));
+  }
 }
 
 function render(){
@@ -508,6 +554,10 @@ function render(){
   const not=cur.following.filter(x=>!c.has(x));
   $('cNot').classList.toggle('hidden',!cur.following.length);
   $('nNot').textContent=t('accounts',{n:nf(not.length)});list($('lNot'),not,'allBack');
+  const ing=new Set(cur.following),fans=cur.followers.filter(x=>!ing.has(x));
+  $('cFans').classList.toggle('hidden',!cur.following.length);
+  $('nFans').textContent=t('accounts',{n:nf(fans.length)});list($('lFans'),fans,'allFans');
+  SETS={fol:c,ing,nw:new Set(nw),lost:new Set(lost)};search();
 }
 
 // Example data, only with #demo in the address (never saved)
@@ -523,6 +573,7 @@ const drop=$('drop');
 ['dragenter','dragover'].forEach(e=>drop.addEventListener(e,ev=>{ev.preventDefault();drop.classList.add('over')}));
 ['dragleave','drop'].forEach(e=>drop.addEventListener(e,ev=>{ev.preventDefault();drop.classList.remove('over')}));
 drop.addEventListener('drop',ev=>handle([...ev.dataTransfer.files]));
+let qT;$('q').addEventListener('input',()=>{clearTimeout(qT);qT=setTimeout(search,120)});
 $('file').addEventListener('change',ev=>{handle([...ev.target.files]);ev.target.value=''});
 // Delete in two taps (no pop-up dialogs, which some browsers block)
 $('hist').addEventListener('click',ev=>{const b=ev.target,i=b.dataset.del;if(i===undefined)return;

@@ -31,6 +31,9 @@ Instagram lets you download your own data, including your list of followers. Fol
 - **Who started following you** since last time
 - **Who unfollowed you** since last time
 - **Who you follow that doesn't follow you back**
+- **Who follows you that you don't follow back**
+- **Search any user** to see at once if you follow each other, only one way, or not at all. All lists filter as you type
+- Built for **big accounts**: tested with 100,000 followers. Long lists load in pages, so the app stays fast
 - A **history** of every snapshot, with follower counts and dates
 
 ### Why it can't get you banned
@@ -64,6 +67,9 @@ Instagram te deja descargar tus propios datos, incluida tu lista de seguidores. 
 - **Quién te empezó a seguir** desde la última vez
 - **Quién te dejó de seguir**
 - **A quién sigues y no te sigue**
+- **Quién te sigue y tú no le sigues**
+- **Busca cualquier usuario** y ve al momento si os seguís, si solo te sigue uno de los dos o ninguno. Todas las listas se filtran mientras escribes
+- Pensado para **cuentas grandes**: probado con 100.000 seguidores. Las listas largas se cargan por partes para que todo vaya rápido
 - Un **historial** con cada registro, su fecha y el número de seguidores
 
 ### Por qué no te pueden banear
