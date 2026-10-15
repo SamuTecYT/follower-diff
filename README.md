@@ -5,6 +5,8 @@
 <p align="center"><b>See who followed and who unfollowed you on Instagram.</b><br>
 Private, free, and safe for your account. No login, no password, no bots.</p>
 
+<p align="center"><a href="https://samutecyt.github.io/follower-diff/"><b>Open the app</b></a> · <a href="https://samutecyt.github.io/follower-diff/#demo">Try it with example data</a></p>
+
 <p align="center">
   <a href="#español">Español</a> · <a href="#english">English</a>
 </p>
@@ -42,10 +44,11 @@ It uses only Instagram's official **Download your information** feature. The app
 - A single, readable HTML file with no dependencies. You can audit all of it.
 
 ### How to use
-1. Open `index.html` in any modern browser (Chrome, Edge, Safari, Firefox), on a computer or a phone.
+1. Open **https://samutecyt.github.io/follower-diff/** (or download `index.html`) in any modern browser, on a computer or a phone.
 2. Tap **Request my file from Instagram** and choose: *Export to device* › *Customize information* › only **Followers and following** › Date range **All time** › Format **JSON**.
-3. When Instagram emails you, download the `.zip` and drop it into the page **without unzipping it**.
-4. Repeat whenever your follower count changes. Each new file is compared with the previous one.
+3. Wait about **30 seconds**. Instagram's screen doesn't refresh by itself and looks like it's still processing. **Leave that menu and open it again**, and the **Download** button will be there.
+4. Download the `.zip` and drop it into the page **without unzipping it**.
+5. Repeat whenever your follower count changes. Each new file is compared with the previous one.
 
 ### Languages
 Opens in your device's language automatically, and you can switch at any time from the selector at the top:
@@ -74,10 +77,11 @@ Solo usa la función oficial **Descargar tu información** de Instagram. La app 
 - Es un único archivo HTML, sin dependencias, que cualquiera puede revisar.
 
 ### Cómo usarlo
-1. Abre `index.html` en cualquier navegador moderno, en el ordenador o en el móvil.
+1. Abre **https://samutecyt.github.io/follower-diff/** (o descarga `index.html`) en cualquier navegador moderno, en el ordenador o en el móvil.
 2. Toca **Pedir mi archivo a Instagram** y elige: *Exportar a dispositivo* › *Personalizar información* › solo **Seguidores y seguidos** › Intervalo **Desde el principio** › Formato **JSON**.
-3. Cuando Instagram te avise, descarga el `.zip` y súbelo a la página **sin descomprimirlo**.
-4. Repite cuando cambie tu número de seguidores. Cada archivo se compara con el anterior.
+3. Espera unos **30 segundos**. La pantalla de Instagram no se actualiza sola y parece que sigue procesando: **sal de ese menú y vuelve a entrar**, y ya verás el botón **Descargar**.
+4. Descarga el `.zip` y súbelo a la página **sin descomprimirlo**.
+5. Repite cuando cambie tu número de seguidores. Cada archivo se compara con el anterior.
 
 ---
 
@@ -86,4 +90,12 @@ Solo usa la función oficial **Descargar tu información** de Instagram. La app 
 - `build.py`: embeds the logo and writes `index.html` (requires Python and Pillow)
 - Try it with example data by opening `index.html#demo` (or `#demo-ja`, `#demo-ar`, …)
 
-Not affiliated with Instagram or Meta. MIT License.
+## Credits and license / Créditos y licencia
+Created by **[SamuTecYT](https://github.com/SamuTecYT)**. Free to use, copy and modify under the [MIT License](LICENSE), **as long as you credit the creator** and keep the license notice.
+
+Creado por **SamuTecYT**. Puedes usarlo, copiarlo y modificarlo gratis con la licencia MIT, **siempre que des crédito a su creador** y mantengas el aviso de licencia.
+
+## Disclaimer / Aviso legal
+Independent project, not affiliated with, endorsed by or connected to Instagram or Meta Platforms, Inc. Provided "as is", without warranty of any kind. Each user is responsible for how they use it. The creator is not liable for any damage, data loss or consequence to any account.
+
+Proyecto independiente, sin relación con Instagram ni Meta. Se ofrece "tal cual", sin garantías. Cada persona es responsable del uso que le dé y el creador no se hace responsable de ningún daño, pérdida de datos o consecuencia en ninguna cuenta.
