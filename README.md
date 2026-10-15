@@ -35,6 +35,7 @@ Private, free, and safe for your account. No login, no password, no bots.</p>
 
 ### Optional account
 Want your history protected? Tap **Create account**: just a nickname and a password. Your history is then **encrypted on your device** (AES-256). There is no server: your password and your followers never leave your phone or computer. It's 100% optional, and the backup you save is encrypted too, so you can move it to another device and open it with the same password.
+**Sign in on another device:** tap **Sign in**, choose your encrypted backup (`follower-history-locked.json`) and type your password.
 If you forget the password it can't be recovered, because no one else has it.
 
 ### What it does
@@ -86,6 +87,7 @@ English, Español, Português, Français, Deutsch, Italiano, Русский, Tü
 
 ### Cuenta opcional
 ¿Quieres proteger tu historial? Pulsa **Crear cuenta**: solo un apodo y una contraseña. Tu historial se guarda **cifrado en tu aparato** (AES-256). No hay servidor: tu contraseña y tus seguidores nunca salen de tu móvil u ordenador. Es 100% opcional, y la copia que guardes también va cifrada, así que puedes pasarla a otro aparato y abrirla con la misma contraseña.
+**Iniciar sesión en otro aparato:** pulsa **Iniciar sesión**, elige tu copia cifrada (`follower-history-locked.json`) y escribe tu contraseña.
 Si olvidas la contraseña no se puede recuperar, porque nadie más la tiene.
 
 ### Qué hace
