@@ -1,0 +1,4 @@
+dist/
+*.zip
+*.json
+__pycache__/

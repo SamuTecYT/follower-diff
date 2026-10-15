@@ -1,0 +1,89 @@
+<p align="center"><img src="logo.png" width="96" alt="Follower Diff logo"></p>
+
+<h1 align="center">Follower Diff</h1>
+
+<p align="center"><b>See who followed and who unfollowed you on Instagram.</b><br>
+Private, free, and safe for your account. No login, no password, no bots.</p>
+
+<p align="center">
+  <a href="#español">Español</a> · <a href="#english">English</a>
+</p>
+
+<p align="center"><img src="screenshots/desktop-en.png" width="720" alt="Follower Diff on desktop with example data"></p>
+
+<p align="center">
+  <img src="screenshots/mobile-es.png" width="230" alt="Phone view in Spanish">
+  <img src="screenshots/mobile-ar.png" width="230" alt="Phone view in Arabic">
+  <img src="screenshots/mobile-ja.png" width="230" alt="Phone view in Japanese">
+</p>
+
+<p align="center"><sub>All screenshots use made-up example data.</sub></p>
+
+---
+
+## English
+
+### What it does
+Instagram lets you download your own data, including your list of followers. Follower Diff takes that file and compares it with the previous one, so you can see:
+
+- **Who started following you** since last time
+- **Who unfollowed you** since last time
+- **Who you follow that doesn't follow you back**
+- A **history** of every snapshot, with follower counts and dates
+
+### Why it can't get you banned
+It uses only Instagram's official **Download your information** feature. The app never logs into your account, never asks for your password, and doesn't automate anything on Instagram.
+
+### Privacy and security
+- **Nothing leaves your device.** The page has a strict Content Security Policy that blocks every network connection, so your followers can't be sent anywhere.
+- **No accounts, no servers, no tracking, no cookies, no analytics.**
+- Usernames read from the file are checked against Instagram's username rules before they are shown. A tampered file can't inject code.
+- History is stored only in your browser. You can save a backup and load it later.
+- A single, readable HTML file with no dependencies. You can audit all of it.
+
+### How to use
+1. Open `index.html` in any modern browser (Chrome, Edge, Safari, Firefox), on a computer or a phone.
+2. Tap **Request my file from Instagram** and choose: *Export to device* › *Customize information* › only **Followers and following** › Date range **All time** › Format **JSON**.
+3. When Instagram emails you, download the `.zip` and drop it into the page **without unzipping it**.
+4. Repeat whenever your follower count changes. Each new file is compared with the previous one.
+
+### Languages
+Opens in your device's language automatically, and you can switch at any time from the selector at the top:
+English, Español, Português, Français, Deutsch, Italiano, Русский, Türkçe, العربية (right-to-left), हिन्दी, 中文, 日本語, 한국어, Bahasa Indonesia.
+
+---
+
+## Español
+
+### Qué hace
+Instagram te deja descargar tus propios datos, incluida tu lista de seguidores. Follower Diff compara ese archivo con el anterior y te muestra:
+
+- **Quién te empezó a seguir** desde la última vez
+- **Quién te dejó de seguir**
+- **A quién sigues y no te sigue**
+- Un **historial** con cada registro, su fecha y el número de seguidores
+
+### Por qué no te pueden banear
+Solo usa la función oficial **Descargar tu información** de Instagram. La app nunca entra a tu cuenta, no pide contraseñas y no automatiza nada en Instagram.
+
+### Privacidad y seguridad
+- **Nada sale de tu aparato.** La página bloquea cualquier conexión a internet, así que tus seguidores no pueden enviarse a ningún sitio.
+- **Sin cuentas, sin servidores, sin rastreo, sin cookies.**
+- Los nombres del archivo se validan antes de mostrarse. Un archivo manipulado no puede meter código.
+- El historial se guarda solo en tu navegador. Puedes guardar una copia y cargarla después.
+- Es un único archivo HTML, sin dependencias, que cualquiera puede revisar.
+
+### Cómo usarlo
+1. Abre `index.html` en cualquier navegador moderno, en el ordenador o en el móvil.
+2. Toca **Pedir mi archivo a Instagram** y elige: *Exportar a dispositivo* › *Personalizar información* › solo **Seguidores y seguidos** › Intervalo **Desde el principio** › Formato **JSON**.
+3. Cuando Instagram te avise, descarga el `.zip` y súbelo a la página **sin descomprimirlo**.
+4. Repite cuando cambie tu número de seguidores. Cada archivo se compara con el anterior.
+
+---
+
+## For developers
+- `src/app.html`: the source (HTML, CSS, JS and all translations in one file)
+- `build.py`: embeds the logo and writes `index.html` (requires Python and Pillow)
+- Try it with example data by opening `index.html#demo` (or `#demo-ja`, `#demo-ar`, …)
+
+Not affiliated with Instagram or Meta. MIT License.

@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<!-- Security: this page cannot connect anywhere; your data never leaves your device -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Follower Diff</title>
+<meta name="description" content="See who followed and unfollowed you on Instagram using Instagram's official data export. 100% private, runs in your browser.">
+<meta name="theme-color" content="#F7F6F3">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Follower Diff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%23111111%22/%3E%3Ccircle%20cx%3D%2225%22%20cy%3D%2225%22%20r%3D%228%22%20fill%3D%22none%22%20stroke%3D%22%23F7F6F3%22%20stroke-width%3D%224%22/%3E%3Cpath%20d%3D%22M11%2049c2-8%208-12%2014-12s12%204%2014%2012%22%20fill%3D%22none%22%20stroke%3D%22%23F7F6F3%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M43%2024h10M48%2019v10%22%20stroke%3D%22%239FD4A6%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M43%2040h10%22%20stroke%3D%22%23F2A6A3%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<style>
+/* Layout: one calm column, document-style; results as a small bento grid */
+:root{
+  --bg:#F7F6F3;--card:#FFFFFF;--line:#EAEAEA;--ink:#2F3437;--ink-strong:#111111;--muted:#787774;
+  --green-bg:#EDF3EC;--green:#346538;--red-bg:#FDEBEC;--red:#9F2F2D;--yellow-bg:#FBF3DB;--yellow:#956400;--blue-bg:#E1F3FE;--blue:#1F6C9F;
+  --sans:-apple-system,'SF Pro Display','Helvetica Neue','Segoe UI Variable Display','Segoe UI','Noto Sans',sans-serif;
+  --serif:'New York','Iowan Old Style','Palatino Linotype',Georgia,'Noto Serif',serif;
+  --mono:'SF Mono','Cascadia Mono',Consolas,monospace;
+  --r:12px;--r-sm:6px;--t:.2s;
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--ink);font:15px/1.6 var(--sans);min-height:100vh}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(600px 400px at 80% -10%,rgba(214,180,140,.12),transparent 70%)}
+main{max-width:880px;margin:0 auto;padding-block:64px calc(96px + env(safe-area-inset-bottom));padding-inline:max(16px,env(safe-area-inset-left)) max(16px,env(safe-area-inset-right));position:relative}
+header{display:flex;align-items:center;gap:12px;margin-bottom:48px}
+header img{width:40px;height:40px;border-radius:10px}
+.brand{flex:1;min-width:0}
+.lang{display:flex;align-items:center;gap:8px;background:var(--card);border:1px solid var(--line);border-radius:var(--r-sm);padding-inline:12px 4px;min-height:44px}
+.lang svg{flex:none}
+.lang select{font:500 14px var(--sans);color:var(--ink-strong);background:transparent;border:0;min-height:42px;padding-inline:4px 8px;cursor:pointer;max-width:160px}
+.lang:focus-within{outline:2px solid var(--ink-strong);outline-offset:2px}
+.lang select:focus{outline:none}
+.eyebrow{font:500 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+h1{font:400 56px/1.1 var(--serif);letter-spacing:-.03em;color:var(--ink-strong);margin-bottom:12px;text-wrap:balance}
+:lang(ar) h1,:lang(zh) h1,:lang(ja) h1,:lang(ko) h1,:lang(hi) h1{letter-spacing:0;font-family:var(--sans);font-weight:600;line-height:1.25}
+:lang(ar) .eyebrow,:lang(zh) .eyebrow,:lang(ja) .eyebrow,:lang(ko) .eyebrow,:lang(hi) .eyebrow{letter-spacing:0;font-family:var(--sans)}
+.lead{color:var(--muted);max-width:560px;margin-bottom:32px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:24px;counter-reset:s}
+.step{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;font-size:14px;counter-increment:s}
+.step::before{content:counter(s);display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--bg);border:1px solid var(--line);font:500 12px var(--mono);margin-bottom:8px}
+.step b{display:block;color:var(--ink-strong)}
+.step span{color:var(--muted);font-size:13px}
+.drop{display:block;border:1px dashed #D6D4CE;border-radius:var(--r);background:var(--card);padding:48px 32px;text-align:center;cursor:pointer;transition:background var(--t),border-color var(--t)}
+.drop:hover,.drop.over{background:#FBFBFA;border-color:#B9B6AE}
+.drop:focus-within{outline:2px solid var(--ink-strong);outline-offset:2px}
+.drop strong{display:block;color:var(--ink-strong);font-weight:600;margin:12px 0 4px}
+.drop span{color:var(--muted);font-size:13px}
+.drop.busy{opacity:.6;pointer-events:none}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;font:500 14px var(--sans);background:var(--ink-strong);color:#fff;border:0;border-radius:var(--r-sm);padding:10px 16px;cursor:pointer;text-decoration:none;transition:background var(--t),transform .1s}
+.btn:hover{background:#333}.btn:active{transform:scale(.98)}
+.btn:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--ink-strong);outline-offset:2px}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.ghost:hover{background:#fff}
+.btn.small{min-height:36px;padding:4px 12px;font-size:12px}
+.msg{margin-top:16px;font-size:14px;min-height:24px}
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:48px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;transition:box-shadow var(--t);min-width:0}
+.card:hover{box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.span2{grid-column:span 2}.span3{grid-column:span 3}.span6{grid-column:span 6}
+.num{font:400 44px/1 var(--serif);letter-spacing:-.02em;color:var(--ink-strong);margin-top:8px;font-variant-numeric:tabular-nums}
+.delta{font:500 12px var(--mono);margin-top:8px;color:var(--muted)}
+.tag{display:inline-block;font:600 10px var(--sans);letter-spacing:.06em;text-transform:uppercase;padding:4px 8px;border-radius:9999px}
+.t-green{background:var(--green-bg);color:var(--green)}.t-red{background:var(--red-bg);color:var(--red)}.t-yellow{background:var(--yellow-bg);color:var(--yellow)}.t-blue{background:var(--blue-bg);color:var(--blue)}
+.list{list-style:none;padding:0;margin-top:16px;max-height:340px;overflow:auto}
+.list li{display:flex;justify-content:space-between;align-items:center;gap:8px;min-height:44px;padding:8px 0;border-bottom:1px solid var(--line);font-size:14px}
+.list li:last-child{border-bottom:0}
+.list a{color:var(--ink-strong);text-decoration:none;font-family:var(--mono);font-size:13px;padding:8px 0;direction:ltr;unicode-bidi:isolate}
+.list a:hover{text-decoration:underline}
+.empty{color:var(--muted)}
+h2{font:400 32px/1.1 var(--serif);letter-spacing:-.02em;color:var(--ink-strong);margin:64px 0 16px}
+details{border-bottom:1px solid var(--line);padding:16px 0}
+summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:16px;font-weight:600;color:var(--ink-strong)}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font:400 20px var(--mono);color:var(--muted)}
+details[open] summary::after{content:"−"}
+details ol{margin-block:12px 4px;padding-inline-start:20px}
+details ol li{margin:4px 0}
+details p{margin-top:8px}
+kbd{font:12px var(--mono);border:1px solid var(--line);border-radius:4px;background:var(--bg);padding:1px 6px}
+.hist li span{color:var(--muted);font-family:var(--mono);font-size:12px}
+.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.note{margin-top:16px;padding:16px;border:1px solid var(--line);border-radius:var(--r);background:var(--card);font-size:14px}
+.demo{margin-bottom:24px}
+.hidden{display:none!important}
+.only-touch{display:none!important}
+@media (hover:none) and (pointer:coarse){.only-touch{display:block!important}.only-mouse{display:none!important}}
+.reveal{opacity:1}
+@media (prefers-reduced-motion:no-preference){
+  .reveal{animation:in .6s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(var(--i,0)*80ms)}
+  @keyframes in{from{opacity:.001;transform:translateY(12px)}}
+}
+@media (max-width:720px){
+  main{padding-block-start:24px}
+  header{margin-bottom:32px;flex-wrap:wrap}
+  h1{font-size:40px}
+  .steps{grid-template-columns:1fr;gap:8px}
+  .step{display:flex;align-items:center;gap:12px;padding:12px 16px}
+  .step::before{margin:0;flex:none}
+  .step span{display:none}
+  .drop{padding:32px 16px}
+  .span3,.span6{grid-column:span 6}
+  .grid{gap:12px;margin-top:32px}
+  .grid .span2{padding:16px}
+  .num{font-size:32px}
+  .grid .span2 .delta{display:none}
+}
+</style>
+</head>
+<body>
+<main>
+  <header class="reveal">
+    <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%23111111%22/%3E%3Ccircle%20cx%3D%2225%22%20cy%3D%2225%22%20r%3D%228%22%20fill%3D%22none%22%20stroke%3D%22%23F7F6F3%22%20stroke-width%3D%224%22/%3E%3Cpath%20d%3D%22M11%2049c2-8%208-12%2014-12s12%204%2014%2012%22%20fill%3D%22none%22%20stroke%3D%22%23F7F6F3%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M43%2024h10M48%2019v10%22%20stroke%3D%22%239FD4A6%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M43%2040h10%22%20stroke%3D%22%23F2A6A3%22%20stroke-width%3D%224%22%20stroke-linecap%3D%22round%22/%3E%3C/svg%3E" alt="">
+    <div class="brand"><div class="eyebrow" data-t="eyebrow"></div><div style="font-weight:600;color:var(--ink-strong)" data-t="app"></div></div>
+    <label class="lang" for="langSel">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg>
+      <select id="langSel" aria-label="Language"></select>
+    </label>
+  </header>
+
+  <div id="demoBar" class="note demo hidden"><span class="tag t-blue" data-t="demoTag"></span> <span data-t="demoTxt"></span></div>
+
+  <h1 class="reveal" style="--i:1" data-th="h1"></h1>
+  <p class="lead reveal" style="--i:2" data-t="lead"></p>
+
+  <div class="steps reveal" style="--i:3">
+    <div class="step"><b data-t="s1b"></b><span data-t="s1s"></span></div>
+    <div class="step"><b data-t="s2b"></b><span data-t="s2s"></span></div>
+    <div class="step"><b data-t="s3b"></b><span data-t="s3s"></span></div>
+  </div>
+  <div class="row reveal" style="--i:3;margin:0 0 24px">
+    <a class="btn ghost" href="https://accountscenter.instagram.com/info_and_permissions/dyi/" target="_blank" rel="noopener noreferrer"><span data-t="req"></span>&nbsp;↗</a>
+  </div>
+
+  <label class="drop reveal" style="--i:4" id="drop">
+    <input type="file" id="file" accept=".zip,.json,.html,application/zip" multiple class="hidden">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3"/><path d="m7 8 5-5 5 5"/><path d="M4 15v4a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-4"/></svg>
+    <strong class="only-mouse" data-t="dropM"></strong>
+    <strong class="only-touch" data-t="dropT"></strong>
+    <span class="only-mouse" data-t="dropMs"></span>
+    <span class="only-touch" data-t="dropTs"></span>
+  </label>
+  <div class="msg" id="msg" role="status" aria-live="polite"></div>
+
+  <section id="results" class="hidden">
+    <div class="grid">
+      <div class="card span2"><div class="eyebrow" data-t="kFol"></div><div class="num" id="nFollowers">0</div><div class="delta" id="dFollowers"></div></div>
+      <div class="card span2"><div class="eyebrow" data-t="kNew"></div><div class="num" id="nNew" style="color:var(--green)">0</div><div class="delta" id="since"></div></div>
+      <div class="card span2"><div class="eyebrow" data-t="kLost"></div><div class="num" id="nLost" style="color:var(--red)">0</div><div class="delta" data-t="sinceLast"></div></div>
+      <div class="card span3"><span class="tag t-green" data-t="tNew"></span><ul class="list" id="lNew"></ul></div>
+      <div class="card span3"><span class="tag t-red" data-t="tLost"></span><ul class="list" id="lLost"></ul></div>
+      <div class="card span6" id="cNot"><span class="tag t-yellow" data-t="tNot"></span> <span class="eyebrow" id="nNot"></span><ul class="list" id="lNot"></ul></div>
+    </div>
+  </section>
+
+  <h2 data-t="hist"></h2>
+  <ul class="list hist" id="hist"></ul>
+  <div class="row"><button type="button" class="btn ghost" id="exp" data-t="exp"></button><label class="btn ghost" tabindex="0" id="impLabel"><span data-t="imp"></span><input type="file" id="imp" accept=".json,.txt,application/json,text/plain" class="hidden"></label></div>
+  <p class="note only-touch" data-th="noteIos"></p>
+
+  <h2 data-t="faq"></h2>
+  <details><summary data-t="q1"></summary><ol data-th="a1"></ol></details>
+  <details><summary data-t="q2"></summary><p data-t="a2"></p></details>
+  <details><summary data-t="q3"></summary><p data-t="a3"></p></details>
+  <details><summary data-t="q4"></summary><p data-t="a4"></p></details>
+</main>
+
+<script>
+'use strict';
+// ---------- Translations (static, written by the developer: safe to render) ----------
+const I18N={
+es:{_n:'Español',eyebrow:'Instagram · privado',app:'Seguidores',h1:'Quién llegó.<br>Quién se fue.',lead:'Compara tus seguidores de hoy con los de la vez anterior. No pide tu contraseña ni se conecta a tu cuenta: todo se queda en este aparato.',
+s1b:'Pide tu archivo',s1s:'Solo «Seguidores y seguidos», desde el principio, en JSON.',s2b:'Espera el aviso',s2s:'Instagram te escribe en minutos. Descarga el .zip.',s3b:'Súbelo aquí',s3s:'Sin descomprimir. Repite cuando cambie tu número.',
+req:'Pedir mi archivo a Instagram',dropM:'Suelta tu archivo de Instagram',dropT:'Toca para elegir tu archivo',dropMs:'o haz clic para buscarlo · el .zip tal cual llega',dropTs:'Búscalo en Archivos › Descargas · el .zip tal cual llega',
+kFol:'Seguidores',kNew:'Nuevos',kLost:'Se fueron',sinceLast:'desde la última vez',tNew:'Te empezaron a seguir',tLost:'Te dejaron de seguir',tNot:'Sigues pero no te siguen',
+hist:'Historial',exp:'Guardar copia del historial',imp:'Cargar copia',noteIos:'<b>En iPhone:</b> Safari puede borrar el historial si pasas semanas sin abrir la página. Ábrela de vez en cuando o guarda una copia.',
+faq:'Preguntas',q1:'Pasos exactos para pedir el archivo',a1:'<li>Toca <b>Pedir mi archivo a Instagram</b> (o: Perfil › ≡ › Centro de cuentas › Tu información y permisos › Exportar tu información).</li><li><b>Crear exportación</b> › tu cuenta › <b>Exportar a dispositivo</b>.</li><li><b>Personalizar información</b>: desmarca todo y deja solo <b>Seguidores y seguidos</b>.</li><li><b>Intervalo de fechas</b>: Desde el principio. <b>Formato</b>: JSON. Toca <b>Iniciar exportación</b>.</li>',
+q2:'¿Me pueden banear por esto?',a2:'No. Es la función oficial de Instagram para descargar tus propios datos. Esta página no entra en tu cuenta, no usa contraseñas ni bots.',
+q3:'¿Quién ve mis seguidores?',a3:'Solo tú. La página tiene bloqueada cualquier conexión a internet: lee el archivo dentro de tu aparato y guarda el historial ahí mismo.',
+q4:'¿Cada cuánto conviene hacerlo?',a4:'Cuando notes que el número cambió, o una vez por semana. Cada archivo nuevo se compara con el anterior.',
+ok:'Listo',warn:'Ojo',wait:'Un momento',reading:'Leyendo tu archivo…',saved:'Foto guardada con {n} seguidores.',noFol:'No encontré tus seguidores en ese archivo. Revisa que sea el .zip de «Seguidores y seguidos».',readErr:'No pude leer ese archivo. Usa el .zip tal como lo descarga Instagram.',tooBig:'Ese archivo es demasiado grande. Pide solo «Seguidores y seguidos».',old:'Tu navegador es muy antiguo. Actualízalo o usa Chrome, Edge o Safari reciente.',
+nothing:'Todavía no hay nada que guardar.',copied:'Copia guardada en el portapapeles. Pégala en Notas.',copyFail:'No pude copiar. Prueba desde el ordenador.',loaded:'Historial cargado.',bad:'Esa copia no es válida.',
+vs:'{d} vs. la anterior',first:'primera foto',since:'desde {d}',need2:'necesitas 2 fotos',waitCmp:'Sube otro archivo más adelante para comparar.',noneNew:'Nadie nuevo desde la última vez.',noneLost:'Nadie se fue.',allBack:'Todos los que sigues te siguen.',accounts:'{n} cuentas',folN:'{n} seguidores',emptyHist:'Aún no hay fotos guardadas. Sube tu primer archivo.',del:'Borrar',sure:'¿Seguro?',demoTag:'Ejemplo',demoTxt:'Estos datos son inventados para mostrar cómo funciona.'},
+en:{_n:'English',eyebrow:'Instagram · private',app:'Follower Diff',h1:'Who came.<br>Who left.',lead:'Compare your followers today with last time. It never asks for your password or connects to your account: everything stays on this device.',
+s1b:'Request your file',s1s:'Only “Followers and following”, all time, in JSON.',s2b:'Wait for the email',s2s:'Instagram notifies you in minutes. Download the .zip.',s3b:'Upload it here',s3s:'Don’t unzip it. Repeat whenever your count changes.',
+req:'Request my file from Instagram',dropM:'Drop your Instagram file',dropT:'Tap to choose your file',dropMs:'or click to browse · the .zip exactly as it arrives',dropTs:'Find it in Files › Downloads · the .zip as it arrives',
+kFol:'Followers',kNew:'New',kLost:'Left',sinceLast:'since last time',tNew:'Started following you',tLost:'Unfollowed you',tNot:'You follow, they don’t',
+hist:'History',exp:'Save a backup',imp:'Load backup',noteIos:'<b>On iPhone:</b> Safari may clear the history if you don’t open the page for weeks. Open it now and then, or save a backup.',
+faq:'Questions',q1:'Exact steps to request the file',a1:'<li>Tap <b>Request my file from Instagram</b> (or: Profile › ≡ › Accounts Center › Your information and permissions › Export your information).</li><li><b>Create export</b> › your account › <b>Export to device</b>.</li><li><b>Customize information</b>: clear everything and keep only <b>Followers and following</b>.</li><li><b>Date range</b>: All time. <b>Format</b>: JSON. Tap <b>Start export</b>.</li>',
+q2:'Can I get banned for this?',a2:'No. It is Instagram’s official tool to download your own data. This page never logs into your account and uses no passwords or bots.',
+q3:'Who can see my followers?',a3:'Only you. The page is blocked from any internet connection: it reads the file on your device and keeps the history right there.',
+q4:'How often should I do it?',a4:'When you notice your count changed, or once a week. Each new file is compared with the previous one.',
+ok:'Done',warn:'Heads up',wait:'One moment',reading:'Reading your file…',saved:'Snapshot saved with {n} followers.',noFol:'I couldn’t find your followers in that file. Make sure it is the “Followers and following” .zip.',readErr:'I couldn’t read that file. Use the .zip exactly as Instagram sends it.',tooBig:'That file is too large. Request only “Followers and following”.',old:'Your browser is too old. Update it or use a recent Chrome, Edge or Safari.',
+nothing:'There is nothing to save yet.',copied:'Backup copied to the clipboard. Paste it into Notes.',copyFail:'Couldn’t copy. Try from a computer.',loaded:'History loaded.',bad:'That backup isn’t valid.',
+vs:'{d} vs. previous',first:'first snapshot',since:'since {d}',need2:'needs 2 snapshots',waitCmp:'Upload another file later to compare.',noneNew:'No one new since last time.',noneLost:'No one left.',allBack:'Everyone you follow follows you back.',accounts:'{n} accounts',folN:'{n} followers',emptyHist:'No snapshots yet. Upload your first file.',del:'Delete',sure:'Sure?',demoTag:'Example',demoTxt:'This data is made up to show how it works.'},
+pt:{_n:'Português',eyebrow:'Instagram · privado',app:'Seguidores',h1:'Quem chegou.<br>Quem saiu.',lead:'Compare seus seguidores de hoje com os da última vez. Não pede sua senha nem se conecta à sua conta: tudo fica neste aparelho.',
+s1b:'Peça seu arquivo',s1s:'Só “Seguidores e seguindo”, desde o início, em JSON.',s2b:'Aguarde o aviso',s2s:'O Instagram avisa em minutos. Baixe o .zip.',s3b:'Envie aqui',s3s:'Sem descompactar. Repita quando o número mudar.',
+req:'Pedir meu arquivo ao Instagram',dropM:'Solte seu arquivo do Instagram',dropT:'Toque para escolher o arquivo',dropMs:'ou clique para procurar · o .zip como chegou',dropTs:'Procure em Arquivos › Downloads · o .zip como chegou',
+kFol:'Seguidores',kNew:'Novos',kLost:'Saíram',sinceLast:'desde a última vez',tNew:'Começaram a seguir você',tLost:'Deixaram de seguir você',tNot:'Você segue, eles não',
+hist:'Histórico',exp:'Salvar cópia do histórico',imp:'Carregar cópia',noteIos:'<b>No iPhone:</b> o Safari pode apagar o histórico se você ficar semanas sem abrir a página. Abra de vez em quando ou salve uma cópia.',
+faq:'Perguntas',q1:'Passos exatos para pedir o arquivo',a1:'<li>Toque em <b>Pedir meu arquivo ao Instagram</b> (ou: Perfil › ≡ › Central de Contas › Suas informações e permissões › Exportar suas informações).</li><li><b>Criar exportação</b> › sua conta › <b>Exportar para o dispositivo</b>.</li><li><b>Personalizar informações</b>: desmarque tudo e deixe só <b>Seguidores e seguindo</b>.</li><li><b>Período</b>: Desde o início. <b>Formato</b>: JSON. Toque em <b>Iniciar exportação</b>.</li>',
+q2:'Posso ser banido por isso?',a2:'Não. É a ferramenta oficial do Instagram para baixar seus próprios dados. Esta página não entra na sua conta nem usa senhas ou bots.',
+q3:'Quem vê meus seguidores?',a3:'Só você. A página é bloqueada para qualquer conexão com a internet: lê o arquivo no seu aparelho e guarda o histórico ali mesmo.',
+q4:'Com que frequência fazer?',a4:'Quando notar que o número mudou, ou uma vez por semana. Cada arquivo novo é comparado com o anterior.',
+ok:'Pronto',warn:'Atenção',wait:'Um momento',reading:'Lendo seu arquivo…',saved:'Registro salvo com {n} seguidores.',noFol:'Não encontrei seus seguidores nesse arquivo. Verifique se é o .zip de “Seguidores e seguindo”.',readErr:'Não consegui ler esse arquivo. Use o .zip exatamente como o Instagram envia.',tooBig:'Esse arquivo é grande demais. Peça só “Seguidores e seguindo”.',old:'Seu navegador é muito antigo. Atualize ou use Chrome, Edge ou Safari recentes.',
+nothing:'Ainda não há nada para salvar.',copied:'Cópia na área de transferência. Cole no app Notas.',copyFail:'Não consegui copiar. Tente pelo computador.',loaded:'Histórico carregado.',bad:'Essa cópia não é válida.',
+vs:'{d} vs. o anterior',first:'primeiro registro',since:'desde {d}',need2:'precisa de 2 registros',waitCmp:'Envie outro arquivo mais tarde para comparar.',noneNew:'Ninguém novo desde a última vez.',noneLost:'Ninguém saiu.',allBack:'Todos que você segue seguem você.',accounts:'{n} contas',folN:'{n} seguidores',emptyHist:'Nenhum registro ainda. Envie seu primeiro arquivo.',del:'Apagar',sure:'Certeza?',demoTag:'Exemplo',demoTxt:'Estes dados são inventados para mostrar como funciona.'},
+fr:{_n:'Français',eyebrow:'Instagram · privé',app:'Abonnés',h1:'Qui est arrivé.<br>Qui est parti.',lead:'Comparez vos abonnés d’aujourd’hui avec ceux de la dernière fois. Aucun mot de passe, aucune connexion à votre compte : tout reste sur cet appareil.',
+s1b:'Demandez votre fichier',s1s:'Uniquement « Abonnés et abonnements », depuis le début, en JSON.',s2b:'Attendez l’e-mail',s2s:'Instagram vous prévient en quelques minutes. Téléchargez le .zip.',s3b:'Déposez-le ici',s3s:'Sans le décompresser. Recommencez quand le nombre change.',
+req:'Demander mon fichier à Instagram',dropM:'Déposez votre fichier Instagram',dropT:'Touchez pour choisir le fichier',dropMs:'ou cliquez pour parcourir · le .zip tel quel',dropTs:'Dans Fichiers › Téléchargements · le .zip tel quel',
+kFol:'Abonnés',kNew:'Nouveaux',kLost:'Partis',sinceLast:'depuis la dernière fois',tNew:'Se sont abonnés',tLost:'Se sont désabonnés',tNot:'Vous les suivez, pas eux',
+hist:'Historique',exp:'Sauvegarder l’historique',imp:'Charger une sauvegarde',noteIos:'<b>Sur iPhone :</b> Safari peut effacer l’historique si vous n’ouvrez pas la page pendant des semaines. Ouvrez-la de temps en temps ou faites une sauvegarde.',
+faq:'Questions',q1:'Étapes exactes pour demander le fichier',a1:'<li>Touchez <b>Demander mon fichier à Instagram</b> (ou : Profil › ≡ › Espace Comptes › Vos informations et autorisations › Exporter vos informations).</li><li><b>Créer une exportation</b> › votre compte › <b>Exporter vers l’appareil</b>.</li><li><b>Personnaliser les informations</b> : décochez tout et gardez seulement <b>Abonnés et abonnements</b>.</li><li><b>Période</b> : Depuis le début. <b>Format</b> : JSON. Touchez <b>Lancer l’exportation</b>.</li>',
+q2:'Puis-je être banni ?',a2:'Non. C’est l’outil officiel d’Instagram pour télécharger vos propres données. Cette page ne se connecte jamais à votre compte, sans mot de passe ni robot.',
+q3:'Qui voit mes abonnés ?',a3:'Vous seul. La page est bloquée pour toute connexion internet : elle lit le fichier sur votre appareil et y garde l’historique.',
+q4:'À quelle fréquence ?',a4:'Quand votre nombre change, ou une fois par semaine. Chaque nouveau fichier est comparé au précédent.',
+ok:'C’est fait',warn:'Attention',wait:'Un instant',reading:'Lecture du fichier…',saved:'Relevé enregistré avec {n} abonnés.',noFol:'Aucun abonné trouvé dans ce fichier. Vérifiez qu’il s’agit du .zip « Abonnés et abonnements ».',readErr:'Impossible de lire ce fichier. Utilisez le .zip tel qu’Instagram l’envoie.',tooBig:'Ce fichier est trop gros. Demandez seulement « Abonnés et abonnements ».',old:'Votre navigateur est trop ancien. Mettez-le à jour ou utilisez Chrome, Edge ou Safari récent.',
+nothing:'Rien à sauvegarder pour l’instant.',copied:'Sauvegarde copiée dans le presse-papiers. Collez-la dans Notes.',copyFail:'Copie impossible. Essayez depuis un ordinateur.',loaded:'Historique chargé.',bad:'Cette sauvegarde n’est pas valide.',
+vs:'{d} vs. précédent',first:'premier relevé',since:'depuis le {d}',need2:'2 relevés nécessaires',waitCmp:'Déposez un autre fichier plus tard pour comparer.',noneNew:'Personne de nouveau.',noneLost:'Personne n’est parti.',allBack:'Tous ceux que vous suivez vous suivent.',accounts:'{n} comptes',folN:'{n} abonnés',emptyHist:'Aucun relevé. Déposez votre premier fichier.',del:'Supprimer',sure:'Sûr ?',demoTag:'Exemple',demoTxt:'Ces données sont fictives, pour montrer le fonctionnement.'},
+de:{_n:'Deutsch',eyebrow:'Instagram · privat',app:'Follower',h1:'Wer kam.<br>Wer ging.',lead:'Vergleiche deine Follower von heute mit dem letzten Mal. Kein Passwort, keine Verbindung zu deinem Konto: Alles bleibt auf diesem Gerät.',
+s1b:'Datei anfordern',s1s:'Nur „Follower und Gefolgt“, gesamter Zeitraum, als JSON.',s2b:'Auf die E-Mail warten',s2s:'Instagram meldet sich in Minuten. Lade die .zip herunter.',s3b:'Hier hochladen',s3s:'Nicht entpacken. Wiederhole es, wenn sich die Zahl ändert.',
+req:'Meine Datei bei Instagram anfordern',dropM:'Instagram-Datei hier ablegen',dropT:'Tippen, um die Datei zu wählen',dropMs:'oder klicken zum Suchen · die .zip unverändert',dropTs:'In Dateien › Downloads · die .zip unverändert',
+kFol:'Follower',kNew:'Neu',kLost:'Weg',sinceLast:'seit dem letzten Mal',tNew:'Folgen dir jetzt',tLost:'Folgen dir nicht mehr',tNot:'Du folgst, sie nicht',
+hist:'Verlauf',exp:'Sicherung speichern',imp:'Sicherung laden',noteIos:'<b>Auf dem iPhone:</b> Safari kann den Verlauf löschen, wenn du die Seite wochenlang nicht öffnest. Öffne sie ab und zu oder speichere eine Sicherung.',
+faq:'Fragen',q1:'Genaue Schritte zum Anfordern',a1:'<li>Tippe auf <b>Meine Datei bei Instagram anfordern</b> (oder: Profil › ≡ › Kontenübersicht › Deine Informationen und Berechtigungen › Deine Informationen exportieren).</li><li><b>Export erstellen</b> › dein Konto › <b>Auf Gerät exportieren</b>.</li><li><b>Informationen anpassen</b>: alles abwählen, nur <b>Follower und Gefolgt</b> lassen.</li><li><b>Zeitraum</b>: Gesamter Zeitraum. <b>Format</b>: JSON. Tippe auf <b>Export starten</b>.</li>',
+q2:'Kann ich dafür gesperrt werden?',a2:'Nein. Es ist Instagrams offizielles Werkzeug, um deine eigenen Daten herunterzuladen. Diese Seite meldet sich nie bei deinem Konto an und nutzt keine Passwörter oder Bots.',
+q3:'Wer sieht meine Follower?',a3:'Nur du. Die Seite ist für jede Internetverbindung gesperrt: Sie liest die Datei auf deinem Gerät und speichert den Verlauf dort.',
+q4:'Wie oft sollte ich das machen?',a4:'Wenn sich deine Zahl ändert, oder einmal pro Woche. Jede neue Datei wird mit der vorherigen verglichen.',
+ok:'Fertig',warn:'Achtung',wait:'Einen Moment',reading:'Datei wird gelesen…',saved:'Stand mit {n} Followern gespeichert.',noFol:'Keine Follower in dieser Datei gefunden. Prüfe, ob es die .zip „Follower und Gefolgt“ ist.',readErr:'Datei konnte nicht gelesen werden. Nutze die .zip genau so, wie Instagram sie schickt.',tooBig:'Die Datei ist zu groß. Fordere nur „Follower und Gefolgt“ an.',old:'Dein Browser ist zu alt. Aktualisiere ihn oder nutze aktuelles Chrome, Edge oder Safari.',
+nothing:'Noch nichts zu speichern.',copied:'Sicherung in die Zwischenablage kopiert. Füge sie in Notizen ein.',copyFail:'Kopieren nicht möglich. Versuche es am Computer.',loaded:'Verlauf geladen.',bad:'Diese Sicherung ist ungültig.',
+vs:'{d} ggü. vorher',first:'erster Stand',since:'seit {d}',need2:'2 Stände nötig',waitCmp:'Lade später eine weitere Datei zum Vergleichen hoch.',noneNew:'Niemand Neues seit dem letzten Mal.',noneLost:'Niemand ist gegangen.',allBack:'Alle, denen du folgst, folgen dir.',accounts:'{n} Konten',folN:'{n} Follower',emptyHist:'Noch keine Stände. Lade deine erste Datei hoch.',del:'Löschen',sure:'Sicher?',demoTag:'Beispiel',demoTxt:'Diese Daten sind erfunden, um die Funktion zu zeigen.'},
+it:{_n:'Italiano',eyebrow:'Instagram · privato',app:'Follower',h1:'Chi è arrivato.<br>Chi se n’è andato.',lead:'Confronta i tuoi follower di oggi con quelli dell’ultima volta. Nessuna password, nessun accesso al tuo account: tutto resta su questo dispositivo.',
+s1b:'Richiedi il file',s1s:'Solo “Follower e persone seguite”, dall’inizio, in JSON.',s2b:'Aspetta l’avviso',s2s:'Instagram ti avvisa in pochi minuti. Scarica lo .zip.',s3b:'Caricalo qui',s3s:'Senza estrarlo. Ripeti quando il numero cambia.',
+req:'Richiedi il mio file a Instagram',dropM:'Trascina qui il file di Instagram',dropT:'Tocca per scegliere il file',dropMs:'o clicca per cercarlo · lo .zip così com’è',dropTs:'In File › Download · lo .zip così com’è',
+kFol:'Follower',kNew:'Nuovi',kLost:'Andati via',sinceLast:'dall’ultima volta',tNew:'Hanno iniziato a seguirti',tLost:'Hanno smesso di seguirti',tNot:'Li segui, loro no',
+hist:'Cronologia',exp:'Salva una copia',imp:'Carica copia',noteIos:'<b>Su iPhone:</b> Safari può cancellare la cronologia se non apri la pagina per settimane. Aprila ogni tanto o salva una copia.',
+faq:'Domande',q1:'Passaggi esatti per richiedere il file',a1:'<li>Tocca <b>Richiedi il mio file a Instagram</b> (oppure: Profilo › ≡ › Centro gestione account › Le tue informazioni e autorizzazioni › Esporta le tue informazioni).</li><li><b>Crea esportazione</b> › il tuo account › <b>Esporta sul dispositivo</b>.</li><li><b>Personalizza informazioni</b>: deseleziona tutto e lascia solo <b>Follower e persone seguite</b>.</li><li><b>Intervallo</b>: Dall’inizio. <b>Formato</b>: JSON. Tocca <b>Avvia esportazione</b>.</li>',
+q2:'Posso essere bannato?',a2:'No. È lo strumento ufficiale di Instagram per scaricare i tuoi dati. Questa pagina non accede mai al tuo account e non usa password né bot.',
+q3:'Chi vede i miei follower?',a3:'Solo tu. La pagina è bloccata per qualsiasi connessione internet: legge il file sul tuo dispositivo e salva lì la cronologia.',
+q4:'Ogni quanto farlo?',a4:'Quando il numero cambia, o una volta a settimana. Ogni nuovo file viene confrontato con il precedente.',
+ok:'Fatto',warn:'Attenzione',wait:'Un momento',reading:'Lettura del file…',saved:'Istantanea salvata con {n} follower.',noFol:'Nessun follower trovato nel file. Controlla che sia lo .zip “Follower e persone seguite”.',readErr:'Impossibile leggere il file. Usa lo .zip esattamente come lo invia Instagram.',tooBig:'Il file è troppo grande. Richiedi solo “Follower e persone seguite”.',old:'Il browser è troppo vecchio. Aggiornalo o usa Chrome, Edge o Safari recenti.',
+nothing:'Ancora niente da salvare.',copied:'Copia negli appunti. Incollala in Note.',copyFail:'Copia non riuscita. Prova dal computer.',loaded:'Cronologia caricata.',bad:'Copia non valida.',
+vs:'{d} rispetto a prima',first:'prima istantanea',since:'dal {d}',need2:'servono 2 istantanee',waitCmp:'Carica un altro file più avanti per confrontare.',noneNew:'Nessuno nuovo dall’ultima volta.',noneLost:'Nessuno se n’è andato.',allBack:'Tutti quelli che segui ti seguono.',accounts:'{n} account',folN:'{n} follower',emptyHist:'Nessuna istantanea. Carica il tuo primo file.',del:'Elimina',sure:'Sicuro?',demoTag:'Esempio',demoTxt:'Dati inventati per mostrare come funziona.'},
+ru:{_n:'Русский',eyebrow:'Instagram · приватно',app:'Подписчики',h1:'Кто пришёл.<br>Кто ушёл.',lead:'Сравните подписчиков сегодня с прошлым разом. Пароль не нужен, к аккаунту не подключается: всё остаётся на этом устройстве.',
+s1b:'Запросите файл',s1s:'Только «Подписчики и подписки», за всё время, в JSON.',s2b:'Дождитесь письма',s2s:'Instagram пришлёт уведомление за минуты. Скачайте .zip.',s3b:'Загрузите сюда',s3s:'Не распаковывайте. Повторяйте, когда число меняется.',
+req:'Запросить файл в Instagram',dropM:'Перетащите файл Instagram',dropT:'Нажмите, чтобы выбрать файл',dropMs:'или нажмите для выбора · .zip как есть',dropTs:'Файлы › Загрузки · .zip как есть',
+kFol:'Подписчики',kNew:'Новые',kLost:'Ушли',sinceLast:'с прошлого раза',tNew:'Подписались на вас',tLost:'Отписались от вас',tNot:'Вы подписаны, они нет',
+hist:'История',exp:'Сохранить копию',imp:'Загрузить копию',noteIos:'<b>На iPhone:</b> Safari может удалить историю, если не открывать страницу неделями. Открывайте её иногда или сохраните копию.',
+faq:'Вопросы',q1:'Как запросить файл',a1:'<li>Нажмите <b>Запросить файл в Instagram</b> (или: Профиль › ≡ › Центр аккаунтов › Ваша информация и разрешения › Экспорт информации).</li><li><b>Создать экспорт</b> › ваш аккаунт › <b>Экспорт на устройство</b>.</li><li><b>Настроить информацию</b>: снимите все отметки, оставьте только <b>Подписчики и подписки</b>.</li><li><b>Период</b>: За всё время. <b>Формат</b>: JSON. Нажмите <b>Начать экспорт</b>.</li>',
+q2:'Меня могут заблокировать?',a2:'Нет. Это официальная функция Instagram для скачивания ваших данных. Страница не входит в аккаунт и не использует пароли или ботов.',
+q3:'Кто видит моих подписчиков?',a3:'Только вы. Странице запрещено любое подключение к интернету: она читает файл на устройстве и хранит историю там же.',
+q4:'Как часто это делать?',a4:'Когда число изменилось, или раз в неделю. Каждый новый файл сравнивается с предыдущим.',
+ok:'Готово',warn:'Внимание',wait:'Секунду',reading:'Читаю файл…',saved:'Снимок сохранён: {n} подписчиков.',noFol:'В файле нет подписчиков. Проверьте, что это .zip «Подписчики и подписки».',readErr:'Не удалось прочитать файл. Используйте .zip в том виде, как его прислал Instagram.',tooBig:'Файл слишком большой. Запросите только «Подписчики и подписки».',old:'Браузер слишком старый. Обновите его или используйте свежий Chrome, Edge или Safari.',
+nothing:'Пока нечего сохранять.',copied:'Копия в буфере обмена. Вставьте её в Заметки.',copyFail:'Не удалось скопировать. Попробуйте с компьютера.',loaded:'История загружена.',bad:'Копия повреждена.',
+vs:'{d} к прошлому',first:'первый снимок',since:'с {d}',need2:'нужно 2 снимка',waitCmp:'Загрузите ещё один файл позже для сравнения.',noneNew:'Новых нет.',noneLost:'Никто не ушёл.',allBack:'Все, на кого вы подписаны, подписаны на вас.',accounts:'аккаунтов: {n}',folN:'подписчиков: {n}',emptyHist:'Снимков пока нет. Загрузите первый файл.',del:'Удалить',sure:'Точно?',demoTag:'Пример',demoTxt:'Данные вымышлены, чтобы показать работу.'},
+tr:{_n:'Türkçe',eyebrow:'Instagram · gizli',app:'Takipçiler',h1:'Kim geldi.<br>Kim gitti.',lead:'Bugünkü takipçilerini öncekiyle karşılaştır. Şifre istemez, hesabına bağlanmaz: her şey bu cihazda kalır.',
+s1b:'Dosyanı iste',s1s:'Yalnızca “Takipçiler ve takip edilenler”, tüm zamanlar, JSON.',s2b:'Bildirimi bekle',s2s:'Instagram dakikalar içinde haber verir. .zip’i indir.',s3b:'Buraya yükle',s3s:'Açmadan. Sayı değişince tekrarla.',
+req:'Dosyamı Instagram’dan iste',dropM:'Instagram dosyanı buraya bırak',dropT:'Dosyanı seçmek için dokun',dropMs:'veya göz atmak için tıkla · .zip olduğu gibi',dropTs:'Dosyalar › İndirilenler · .zip olduğu gibi',
+kFol:'Takipçi',kNew:'Yeni',kLost:'Gidenler',sinceLast:'son seferden beri',tNew:'Seni takip etmeye başladı',tLost:'Seni takipten çıktı',tNot:'Sen takip ediyorsun, onlar değil',
+hist:'Geçmiş',exp:'Yedek kaydet',imp:'Yedek yükle',noteIos:'<b>iPhone’da:</b> Sayfayı haftalarca açmazsan Safari geçmişi silebilir. Arada bir aç ya da yedek kaydet.',
+faq:'Sorular',q1:'Dosyayı isteme adımları',a1:'<li><b>Dosyamı Instagram’dan iste</b>’ye dokun (veya: Profil › ≡ › Hesaplar Merkezi › Bilgilerin ve izinlerin › Bilgilerini dışa aktar).</li><li><b>Dışa aktarma oluştur</b> › hesabın › <b>Cihaza aktar</b>.</li><li><b>Bilgileri özelleştir</b>: hepsini kaldır, yalnızca <b>Takipçiler ve takip edilenler</b> kalsın.</li><li><b>Tarih aralığı</b>: Tüm zamanlar. <b>Biçim</b>: JSON. <b>Dışa aktarmayı başlat</b>.</li>',
+q2:'Bu yüzden banlanır mıyım?',a2:'Hayır. Bu, Instagram’ın kendi verilerini indirme aracı. Bu sayfa hesabına asla girmez, şifre veya bot kullanmaz.',
+q3:'Takipçilerimi kim görür?',a3:'Yalnızca sen. Sayfanın internete bağlanması engellidir: dosyayı cihazında okur ve geçmişi orada saklar.',
+q4:'Ne sıklıkla yapmalıyım?',a4:'Sayı değiştiğinde ya da haftada bir. Her yeni dosya öncekiyle karşılaştırılır.',
+ok:'Tamam',warn:'Dikkat',wait:'Bir saniye',reading:'Dosya okunuyor…',saved:'{n} takipçiyle kayıt alındı.',noFol:'Bu dosyada takipçi bulunamadı. “Takipçiler ve takip edilenler” .zip’i olduğundan emin ol.',readErr:'Dosya okunamadı. .zip’i Instagram’ın gönderdiği gibi kullan.',tooBig:'Dosya çok büyük. Yalnızca “Takipçiler ve takip edilenler”i iste.',old:'Tarayıcın çok eski. Güncelle veya güncel Chrome, Edge ya da Safari kullan.',
+nothing:'Henüz kaydedilecek bir şey yok.',copied:'Yedek panoya kopyalandı. Notlar’a yapıştır.',copyFail:'Kopyalanamadı. Bilgisayardan dene.',loaded:'Geçmiş yüklendi.',bad:'Bu yedek geçersiz.',
+vs:'öncekine göre {d}',first:'ilk kayıt',since:'{d} tarihinden beri',need2:'2 kayıt gerekli',waitCmp:'Karşılaştırmak için daha sonra yeni dosya yükle.',noneNew:'Yeni kimse yok.',noneLost:'Giden yok.',allBack:'Takip ettiğin herkes seni takip ediyor.',accounts:'{n} hesap',folN:'{n} takipçi',emptyHist:'Henüz kayıt yok. İlk dosyanı yükle.',del:'Sil',sure:'Emin misin?',demoTag:'Örnek',demoTxt:'Bu veriler nasıl çalıştığını göstermek için uydurmadır.'},
+ar:{_n:'العربية',eyebrow:'إنستغرام · خاص',app:'المتابعون',h1:'من جاء.<br>ومن غادر.',lead:'قارن متابعيك اليوم بالمرة السابقة. لا يطلب كلمة المرور ولا يتصل بحسابك: كل شيء يبقى على هذا الجهاز.',
+s1b:'اطلب ملفك',s1s:'«المتابِعون والمتابَعون» فقط، منذ البداية، بصيغة JSON.',s2b:'انتظر الإشعار',s2s:'يُعلمك إنستغرام خلال دقائق. نزّل ملف ‎.zip.',s3b:'ارفعه هنا',s3s:'دون فك الضغط. كرّر عندما يتغير العدد.',
+req:'اطلب ملفي من إنستغرام',dropM:'أفلت ملف إنستغرام هنا',dropT:'اضغط لاختيار الملف',dropMs:'أو انقر للتصفح · ملف ‎.zip كما وصل',dropTs:'في الملفات › التنزيلات · ملف ‎.zip كما وصل',
+kFol:'المتابعون',kNew:'جدد',kLost:'غادروا',sinceLast:'منذ المرة الأخيرة',tNew:'بدأوا متابعتك',tLost:'ألغوا متابعتك',tNot:'تتابعهم ولا يتابعونك',
+hist:'السجل',exp:'حفظ نسخة احتياطية',imp:'تحميل نسخة',noteIos:'<b>على iPhone:</b> قد يحذف Safari السجل إذا لم تفتح الصفحة لأسابيع. افتحها من حين لآخر أو احفظ نسخة.',
+faq:'أسئلة',q1:'خطوات طلب الملف',a1:'<li>اضغط <b>اطلب ملفي من إنستغرام</b> (أو: الملف الشخصي › ≡ › مركز الحسابات › معلوماتك وأذوناتك › تصدير معلوماتك).</li><li><b>إنشاء تصدير</b> › حسابك › <b>تصدير إلى الجهاز</b>.</li><li><b>تخصيص المعلومات</b>: ألغِ تحديد الكل واترك <b>المتابِعون والمتابَعون</b> فقط.</li><li><b>النطاق الزمني</b>: منذ البداية. <b>التنسيق</b>: JSON. اضغط <b>بدء التصدير</b>.</li>',
+q2:'هل يمكن أن يُحظر حسابي؟',a2:'لا. إنها أداة إنستغرام الرسمية لتنزيل بياناتك. هذه الصفحة لا تدخل حسابك ولا تستخدم كلمات مرور أو برامج آلية.',
+q3:'من يرى متابعيّ؟',a3:'أنت فقط. الصفحة ممنوعة من أي اتصال بالإنترنت: تقرأ الملف على جهازك وتحفظ السجل عليه.',
+q4:'كم مرة أفعل ذلك؟',a4:'عندما يتغير العدد، أو مرة أسبوعيًا. يُقارن كل ملف جديد بالسابق.',
+ok:'تم',warn:'تنبيه',wait:'لحظة',reading:'جارٍ قراءة الملف…',saved:'حُفظت لقطة بـ {n} متابع.',noFol:'لم أجد متابعين في هذا الملف. تأكد أنه ملف ‎.zip الخاص بـ«المتابِعون والمتابَعون».',readErr:'تعذرت قراءة الملف. استخدم ملف ‎.zip كما أرسله إنستغرام.',tooBig:'الملف كبير جدًا. اطلب «المتابِعون والمتابَعون» فقط.',old:'متصفحك قديم جدًا. حدّثه أو استخدم Chrome أو Edge أو Safari حديثًا.',
+nothing:'لا شيء لحفظه بعد.',copied:'نُسخت النسخة إلى الحافظة. الصقها في الملاحظات.',copyFail:'تعذر النسخ. جرّب من الحاسوب.',loaded:'تم تحميل السجل.',bad:'هذه النسخة غير صالحة.',
+vs:'{d} مقارنة بالسابق',first:'أول لقطة',since:'منذ {d}',need2:'يلزم لقطتان',waitCmp:'ارفع ملفًا آخر لاحقًا للمقارنة.',noneNew:'لا أحد جديد.',noneLost:'لم يغادر أحد.',allBack:'كل من تتابعهم يتابعونك.',accounts:'{n} حساب',folN:'{n} متابع',emptyHist:'لا توجد لقطات بعد. ارفع ملفك الأول.',del:'حذف',sure:'متأكد؟',demoTag:'مثال',demoTxt:'هذه بيانات وهمية لشرح طريقة العمل.'},
+hi:{_n:'हिन्दी',eyebrow:'Instagram · निजी',app:'फ़ॉलोअर्स',h1:'कौन आया।<br>कौन गया।',lead:'आज के फ़ॉलोअर्स की तुलना पिछली बार से करें। पासवर्ड नहीं माँगता, आपके अकाउंट से नहीं जुड़ता: सब कुछ इसी डिवाइस पर रहता है।',
+s1b:'अपनी फ़ाइल माँगें',s1s:'सिर्फ़ “फ़ॉलोअर्स और फ़ॉलोइंग”, शुरू से, JSON में।',s2b:'सूचना का इंतज़ार करें',s2s:'Instagram कुछ मिनटों में बताता है। .zip डाउनलोड करें।',s3b:'यहाँ अपलोड करें',s3s:'अनज़िप न करें। संख्या बदलने पर दोहराएँ।',
+req:'Instagram से मेरी फ़ाइल माँगें',dropM:'अपनी Instagram फ़ाइल यहाँ छोड़ें',dropT:'फ़ाइल चुनने के लिए टैप करें',dropMs:'या ढूँढने के लिए क्लिक करें · .zip जैसी आई वैसी',dropTs:'Files › Downloads में · .zip जैसी आई वैसी',
+kFol:'फ़ॉलोअर्स',kNew:'नए',kLost:'चले गए',sinceLast:'पिछली बार से',tNew:'आपको फ़ॉलो करने लगे',tLost:'आपको अनफ़ॉलो किया',tNot:'आप फ़ॉलो करते हैं, वे नहीं',
+hist:'इतिहास',exp:'बैकअप सहेजें',imp:'बैकअप लोड करें',noteIos:'<b>iPhone पर:</b> हफ़्तों तक पेज न खोलने पर Safari इतिहास मिटा सकता है। बीच-बीच में खोलें या बैकअप सहेजें।',
+faq:'सवाल',q1:'फ़ाइल माँगने के सटीक चरण',a1:'<li><b>Instagram से मेरी फ़ाइल माँगें</b> पर टैप करें (या: प्रोफ़ाइल › ≡ › अकाउंट्स सेंटर › आपकी जानकारी और अनुमतियाँ › अपनी जानकारी एक्सपोर्ट करें)।</li><li><b>एक्सपोर्ट बनाएँ</b> › आपका अकाउंट › <b>डिवाइस पर एक्सपोर्ट करें</b>।</li><li><b>जानकारी कस्टमाइज़ करें</b>: सब हटाएँ, सिर्फ़ <b>फ़ॉलोअर्स और फ़ॉलोइंग</b> रखें।</li><li><b>तारीख़ सीमा</b>: शुरू से। <b>फ़ॉर्मेट</b>: JSON। <b>एक्सपोर्ट शुरू करें</b> पर टैप करें।</li>',
+q2:'क्या इससे बैन हो सकता है?',a2:'नहीं। यह अपना डेटा डाउनलोड करने का Instagram का आधिकारिक टूल है। यह पेज कभी आपके अकाउंट में लॉग इन नहीं करता, न पासवर्ड न बॉट।',
+q3:'मेरे फ़ॉलोअर्स कौन देखता है?',a3:'सिर्फ़ आप। पेज का इंटरनेट से जुड़ना बंद है: यह फ़ाइल आपके डिवाइस पर पढ़ता है और इतिहास वहीं रखता है।',
+q4:'कितनी बार करें?',a4:'जब संख्या बदले, या हफ़्ते में एक बार। हर नई फ़ाइल की तुलना पिछली से होती है।',
+ok:'हो गया',warn:'ध्यान दें',wait:'एक पल',reading:'फ़ाइल पढ़ी जा रही है…',saved:'{n} फ़ॉलोअर्स के साथ स्नैपशॉट सहेजा गया।',noFol:'इस फ़ाइल में फ़ॉलोअर्स नहीं मिले। देखें कि यह “फ़ॉलोअर्स और फ़ॉलोइंग” की .zip है।',readErr:'फ़ाइल नहीं पढ़ी जा सकी। .zip वैसी ही इस्तेमाल करें जैसी Instagram भेजता है।',tooBig:'फ़ाइल बहुत बड़ी है। सिर्फ़ “फ़ॉलोअर्स और फ़ॉलोइंग” माँगें।',old:'आपका ब्राउज़र बहुत पुराना है। अपडेट करें या नया Chrome, Edge या Safari इस्तेमाल करें।',
+nothing:'अभी सहेजने को कुछ नहीं है।',copied:'बैकअप क्लिपबोर्ड पर कॉपी हुआ। Notes में पेस्ट करें।',copyFail:'कॉपी नहीं हुआ। कंप्यूटर से कोशिश करें।',loaded:'इतिहास लोड हुआ।',bad:'यह बैकअप सही नहीं है।',
+vs:'पिछले से {d}',first:'पहला स्नैपशॉट',since:'{d} से',need2:'2 स्नैपशॉट चाहिए',waitCmp:'तुलना के लिए बाद में दूसरी फ़ाइल अपलोड करें।',noneNew:'कोई नया नहीं।',noneLost:'कोई नहीं गया।',allBack:'जिन्हें आप फ़ॉलो करते हैं, सब आपको फ़ॉलो करते हैं।',accounts:'{n} अकाउंट',folN:'{n} फ़ॉलोअर्स',emptyHist:'अभी कोई स्नैपशॉट नहीं। पहली फ़ाइल अपलोड करें।',del:'हटाएँ',sure:'पक्का?',demoTag:'उदाहरण',demoTxt:'यह डेटा काल्पनिक है, सिर्फ़ दिखाने के लिए।'},
+zh:{_n:'中文',eyebrow:'Instagram · 私密',app:'粉丝变化',h1:'谁来了，<br>谁走了。',lead:'把今天的粉丝和上一次对比。不需要密码，也不连接你的账号：所有数据都留在这台设备上。',
+s1b:'申请文件',s1s:'只选“粉丝和关注”，全部时间，JSON 格式。',s2b:'等待通知',s2s:'Instagram 几分钟内会通知你。下载 .zip。',s3b:'上传到这里',s3s:'不用解压。粉丝数变化时再做一次。',
+req:'向 Instagram 申请我的文件',dropM:'把 Instagram 文件拖到这里',dropT:'点按选择文件',dropMs:'或点击浏览 · 原样的 .zip',dropTs:'在“文件 › 下载”中 · 原样的 .zip',
+kFol:'粉丝',kNew:'新增',kLost:'离开',sinceLast:'自上次以来',tNew:'开始关注你',tLost:'取消关注你',tNot:'你关注了，对方没回关',
+hist:'历史记录',exp:'保存备份',imp:'载入备份',noteIos:'<b>iPhone 用户：</b>如果几周不打开此页面，Safari 可能会清除历史记录。请偶尔打开，或保存一份备份。',
+faq:'常见问题',q1:'申请文件的具体步骤',a1:'<li>点按<b>向 Instagram 申请我的文件</b>（或：个人主页 › ≡ › 账户中心 › 你的信息和权限 › 导出你的信息）。</li><li><b>创建导出</b> › 你的账户 › <b>导出到设备</b>。</li><li><b>自定义信息</b>：全部取消，只保留<b>粉丝和关注</b>。</li><li><b>日期范围</b>：全部时间。<b>格式</b>：JSON。点按<b>开始导出</b>。</li>',
+q2:'会被封号吗？',a2:'不会。这是 Instagram 官方的个人数据下载功能。此页面从不登录你的账号，也不使用密码或机器人。',
+q3:'谁能看到我的粉丝？',a3:'只有你。此页面被禁止连接互联网：它在你的设备上读取文件，并把历史记录保存在本机。',
+q4:'多久做一次？',a4:'发现粉丝数变化时，或每周一次。每个新文件都会和上一次对比。',
+ok:'完成',warn:'注意',wait:'请稍候',reading:'正在读取文件…',saved:'已保存快照，共 {n} 位粉丝。',noFol:'没有在文件中找到粉丝。请确认这是“粉丝和关注”的 .zip。',readErr:'无法读取该文件。请直接使用 Instagram 发送的 .zip。',tooBig:'文件太大。请只申请“粉丝和关注”。',old:'浏览器版本过旧。请更新，或使用新版 Chrome、Edge 或 Safari。',
+nothing:'还没有可保存的内容。',copied:'备份已复制到剪贴板，请粘贴到备忘录。',copyFail:'复制失败，请在电脑上尝试。',loaded:'历史记录已载入。',bad:'该备份无效。',
+vs:'较上次 {d}',first:'第一次快照',since:'自 {d}',need2:'需要 2 次快照',waitCmp:'之后再上传一个文件即可对比。',noneNew:'没有新粉丝。',noneLost:'没有人离开。',allBack:'你关注的人都回关了你。',accounts:'{n} 个账号',folN:'{n} 位粉丝',emptyHist:'还没有快照。上传你的第一个文件。',del:'删除',sure:'确定？',demoTag:'示例',demoTxt:'这些是虚构数据，仅用于演示。'},
+ja:{_n:'日本語',eyebrow:'Instagram · プライベート',app:'フォロワー',h1:'誰が来て、<br>誰が去ったか。',lead:'今日のフォロワーを前回と比べます。パスワード不要、アカウントにも接続しません。すべてこの端末の中だけで処理されます。',
+s1b:'ファイルを依頼',s1s:'「フォロワーとフォロー中」のみ、全期間、JSON形式。',s2b:'通知を待つ',s2s:'数分でInstagramから届きます。.zipをダウンロード。',s3b:'ここにアップロード',s3s:'解凍せずにそのまま。数が変わったら繰り返します。',
+req:'Instagramにファイルを依頼',dropM:'Instagramのファイルをここにドロップ',dropT:'タップしてファイルを選択',dropMs:'またはクリックして選択 · 届いた.zipのまま',dropTs:'「ファイル › ダウンロード」から · 届いた.zipのまま',
+kFol:'フォロワー',kNew:'新規',kLost:'解除',sinceLast:'前回から',tNew:'フォローを開始',tLost:'フォローを解除',tNot:'片思いフォロー',
+hist:'履歴',exp:'バックアップを保存',imp:'バックアップを読み込む',noteIos:'<b>iPhoneの場合：</b>数週間ページを開かないと、Safariが履歴を消すことがあります。ときどき開くか、バックアップを保存してください。',
+faq:'よくある質問',q1:'ファイルを依頼する手順',a1:'<li><b>Instagramにファイルを依頼</b>をタップ（または：プロフィール › ≡ › アカウントセンター › あなたの情報とアクセス許可 › 情報をエクスポート）。</li><li><b>エクスポートを作成</b> › アカウント › <b>デバイスにエクスポート</b>。</li><li><b>情報をカスタマイズ</b>：すべて外し、<b>フォロワーとフォロー中</b>だけ残す。</li><li><b>期間</b>：全期間。<b>形式</b>：JSON。<b>エクスポートを開始</b>をタップ。</li>',
+q2:'アカウント停止になりませんか？',a2:'なりません。自分のデータをダウンロードするInstagram公式の機能です。このページはアカウントにログインせず、パスワードやボットも使いません。',
+q3:'フォロワーは誰に見えますか？',a3:'あなただけです。このページはインターネット接続が禁止されています。端末上でファイルを読み、履歴も端末に保存します。',
+q4:'どのくらいの頻度で？',a4:'数が変わったとき、または週に一度。新しいファイルは前回と比較されます。',
+ok:'完了',warn:'注意',wait:'お待ちください',reading:'ファイルを読み込み中…',saved:'フォロワー{n}人で記録しました。',noFol:'フォロワーが見つかりません。「フォロワーとフォロー中」の.zipか確認してください。',readErr:'ファイルを読み込めません。Instagramから届いた.zipをそのまま使ってください。',tooBig:'ファイルが大きすぎます。「フォロワーとフォロー中」だけを依頼してください。',old:'ブラウザが古すぎます。更新するか、最新のChrome・Edge・Safariを使ってください。',
+nothing:'保存するものがまだありません。',copied:'バックアップをクリップボードにコピーしました。メモに貼り付けてください。',copyFail:'コピーできません。パソコンで試してください。',loaded:'履歴を読み込みました。',bad:'無効なバックアップです。',
+vs:'前回比 {d}',first:'最初の記録',since:'{d}から',need2:'記録が2回必要',waitCmp:'後でもう一度アップロードすると比較できます。',noneNew:'新しいフォロワーはいません。',noneLost:'解除した人はいません。',allBack:'フォロー中の全員があなたをフォローしています。',accounts:'{n}件',folN:'フォロワー{n}人',emptyHist:'まだ記録がありません。最初のファイルをアップロードしてください。',del:'削除',sure:'本当に？',demoTag:'サンプル',demoTxt:'動作説明のための架空のデータです。'},
+ko:{_n:'한국어',eyebrow:'Instagram · 비공개',app:'팔로워',h1:'누가 왔고,<br>누가 떠났는지.',lead:'오늘의 팔로워를 지난번과 비교합니다. 비밀번호를 묻지 않고 계정에도 연결하지 않아요. 모든 것이 이 기기에만 남습니다.',
+s1b:'파일 요청',s1s:'“팔로워 및 팔로잉”만, 전체 기간, JSON 형식.',s2b:'알림 기다리기',s2s:'몇 분 안에 Instagram이 알려줘요. .zip을 다운로드하세요.',s3b:'여기에 업로드',s3s:'압축을 풀지 마세요. 숫자가 바뀌면 반복하세요.',
+req:'Instagram에 내 파일 요청',dropM:'Instagram 파일을 여기에 놓으세요',dropT:'탭하여 파일 선택',dropMs:'또는 클릭해서 찾기 · 받은 .zip 그대로',dropTs:'파일 › 다운로드에서 · 받은 .zip 그대로',
+kFol:'팔로워',kNew:'신규',kLost:'떠남',sinceLast:'지난번 이후',tNew:'나를 팔로우하기 시작',tLost:'나를 언팔로우',tNot:'나만 팔로우 중',
+hist:'기록',exp:'백업 저장',imp:'백업 불러오기',noteIos:'<b>iPhone:</b> 몇 주 동안 페이지를 열지 않으면 Safari가 기록을 지울 수 있어요. 가끔 열거나 백업을 저장하세요.',
+faq:'자주 묻는 질문',q1:'파일 요청 방법',a1:'<li><b>Instagram에 내 파일 요청</b>을 탭하세요 (또는: 프로필 › ≡ › 계정 센터 › 내 정보 및 권한 › 내 정보 내보내기).</li><li><b>내보내기 만들기</b> › 내 계정 › <b>기기로 내보내기</b>.</li><li><b>정보 맞춤 설정</b>: 모두 해제하고 <b>팔로워 및 팔로잉</b>만 남기세요.</li><li><b>기간</b>: 전체 기간. <b>형식</b>: JSON. <b>내보내기 시작</b>을 탭하세요.</li>',
+q2:'이것 때문에 정지될 수 있나요?',a2:'아니요. 내 데이터를 다운로드하는 Instagram 공식 기능입니다. 이 페이지는 계정에 로그인하지 않으며 비밀번호나 봇을 쓰지 않습니다.',
+q3:'내 팔로워는 누가 보나요?',a3:'나만 봅니다. 이 페이지는 인터넷 연결이 차단되어 있어요. 기기에서 파일을 읽고 기록도 기기에 저장합니다.',
+q4:'얼마나 자주 하면 되나요?',a4:'숫자가 바뀌었을 때나 일주일에 한 번. 새 파일은 이전 파일과 비교됩니다.',
+ok:'완료',warn:'알림',wait:'잠시만요',reading:'파일을 읽는 중…',saved:'팔로워 {n}명으로 기록했어요.',noFol:'이 파일에서 팔로워를 찾지 못했어요. “팔로워 및 팔로잉” .zip인지 확인하세요.',readErr:'파일을 읽을 수 없어요. Instagram이 보낸 .zip을 그대로 사용하세요.',tooBig:'파일이 너무 커요. “팔로워 및 팔로잉”만 요청하세요.',old:'브라우저가 너무 오래되었어요. 업데이트하거나 최신 Chrome, Edge, Safari를 사용하세요.',
+nothing:'아직 저장할 것이 없어요.',copied:'백업이 클립보드에 복사됐어요. 메모에 붙여 넣으세요.',copyFail:'복사하지 못했어요. 컴퓨터에서 시도하세요.',loaded:'기록을 불러왔어요.',bad:'유효하지 않은 백업이에요.',
+vs:'이전 대비 {d}',first:'첫 기록',since:'{d}부터',need2:'기록 2개 필요',waitCmp:'나중에 파일을 하나 더 올리면 비교할 수 있어요.',noneNew:'새로운 사람이 없어요.',noneLost:'떠난 사람이 없어요.',allBack:'내가 팔로우하는 모두가 나를 팔로우해요.',accounts:'{n}개 계정',folN:'팔로워 {n}명',emptyHist:'아직 기록이 없어요. 첫 파일을 올려 보세요.',del:'삭제',sure:'정말요?',demoTag:'예시',demoTxt:'작동 방식을 보여주기 위한 가상 데이터입니다.'},
+id:{_n:'Bahasa Indonesia',eyebrow:'Instagram · pribadi',app:'Pengikut',h1:'Siapa datang.<br>Siapa pergi.',lead:'Bandingkan pengikutmu hari ini dengan sebelumnya. Tidak minta kata sandi dan tidak terhubung ke akunmu: semua tetap di perangkat ini.',
+s1b:'Minta filemu',s1s:'Hanya “Pengikut dan mengikuti”, sepanjang waktu, format JSON.',s2b:'Tunggu notifikasi',s2s:'Instagram memberi tahu dalam hitungan menit. Unduh .zip-nya.',s3b:'Unggah di sini',s3s:'Jangan diekstrak. Ulangi saat jumlahnya berubah.',
+req:'Minta fileku ke Instagram',dropM:'Letakkan file Instagram di sini',dropT:'Ketuk untuk memilih file',dropMs:'atau klik untuk mencari · .zip apa adanya',dropTs:'Di File › Unduhan · .zip apa adanya',
+kFol:'Pengikut',kNew:'Baru',kLost:'Pergi',sinceLast:'sejak terakhir',tNew:'Mulai mengikutimu',tLost:'Berhenti mengikutimu',tNot:'Kamu ikuti, mereka tidak',
+hist:'Riwayat',exp:'Simpan cadangan',imp:'Muat cadangan',noteIos:'<b>Di iPhone:</b> Safari bisa menghapus riwayat jika halaman tidak dibuka berminggu-minggu. Buka sesekali atau simpan cadangan.',
+faq:'Pertanyaan',q1:'Langkah meminta file',a1:'<li>Ketuk <b>Minta fileku ke Instagram</b> (atau: Profil › ≡ › Pusat Akun › Informasi dan izin Anda › Ekspor informasi Anda).</li><li><b>Buat ekspor</b> › akunmu › <b>Ekspor ke perangkat</b>.</li><li><b>Sesuaikan informasi</b>: hapus semua centang, sisakan <b>Pengikut dan mengikuti</b>.</li><li><b>Rentang tanggal</b>: Sepanjang waktu. <b>Format</b>: JSON. Ketuk <b>Mulai ekspor</b>.</li>',
+q2:'Apakah bisa diblokir?',a2:'Tidak. Ini fitur resmi Instagram untuk mengunduh datamu sendiri. Halaman ini tidak pernah masuk ke akunmu dan tidak memakai kata sandi atau bot.',
+q3:'Siapa yang melihat pengikutku?',a3:'Hanya kamu. Halaman ini diblokir dari koneksi internet: membaca file di perangkatmu dan menyimpan riwayat di sana.',
+q4:'Seberapa sering?',a4:'Saat jumlahnya berubah, atau seminggu sekali. Setiap file baru dibandingkan dengan sebelumnya.',
+ok:'Selesai',warn:'Perhatian',wait:'Sebentar',reading:'Membaca file…',saved:'Catatan disimpan dengan {n} pengikut.',noFol:'Tidak ada pengikut di file itu. Pastikan itu .zip “Pengikut dan mengikuti”.',readErr:'File tidak bisa dibaca. Gunakan .zip persis seperti yang dikirim Instagram.',tooBig:'File terlalu besar. Minta hanya “Pengikut dan mengikuti”.',old:'Browser terlalu lama. Perbarui atau gunakan Chrome, Edge, atau Safari terbaru.',
+nothing:'Belum ada yang bisa disimpan.',copied:'Cadangan disalin ke papan klip. Tempel di Catatan.',copyFail:'Gagal menyalin. Coba dari komputer.',loaded:'Riwayat dimuat.',bad:'Cadangan tidak valid.',
+vs:'{d} dari sebelumnya',first:'catatan pertama',since:'sejak {d}',need2:'perlu 2 catatan',waitCmp:'Unggah file lain nanti untuk membandingkan.',noneNew:'Tidak ada yang baru.',noneLost:'Tidak ada yang pergi.',allBack:'Semua yang kamu ikuti mengikutimu.',accounts:'{n} akun',folN:'{n} pengikut',emptyHist:'Belum ada catatan. Unggah file pertamamu.',del:'Hapus',sure:'Yakin?',demoTag:'Contoh',demoTxt:'Data ini rekaan untuk menunjukkan cara kerjanya.'}
+};
+const RTL=new Set(['ar']);
+const LKEY='ig-seguidores-lang';
+let L='en';
+const t=(k,v={})=>String((I18N[L]&&I18N[L][k])??I18N.en[k]??k).replace(/\{(\w+)\}/g,(_,x)=>v[x]??'');
+function pickLang(){
+  try{const s=localStorage.getItem(LKEY);if(s&&I18N[s])return s}catch{}
+  for(const l of (navigator.languages||[navigator.language||'en'])){const b=String(l).toLowerCase().split('-')[0];if(I18N[b])return b}
+  return 'en';
+}
+function applyLang(code){
+  L=I18N[code]?code:'en';
+  const root=document.documentElement;root.lang=L;root.dir=RTL.has(L)?'rtl':'ltr';
+  document.querySelectorAll('[data-t]').forEach(el=>el.textContent=t(el.dataset.t));
+  document.querySelectorAll('[data-th]').forEach(el=>el.innerHTML=t(el.dataset.th)); // static developer strings only
+  $('langSel').value=L;
+  render();
+}
+
+// ---------- App ----------
+const KEY='ig-seguidores-v1';
+const MAX_FILE=200*1024*1024, MAX_ENTRY=50*1024*1024;
+const $=id=>document.getElementById(id);
+// Only valid Instagram usernames are accepted: blocks malicious code hidden in a file
+const VALID=/^[a-z0-9._]{1,30}$/;
+const clean=arr=>[...new Set((Array.isArray(arr)?arr:[]).map(x=>String(x).toLowerCase()).filter(x=>VALID.test(x)))].sort();
+
+let mem=null,demo=false;
+const load=()=>{if(mem)return mem.slice();try{return JSON.parse(localStorage.getItem(KEY))||[]}catch{return[]}};
+const save=h=>{if(demo){mem=h.slice();return}try{localStorage.setItem(KEY,JSON.stringify(h));mem=null}catch{mem=h.slice()}};
+const TAG={green:'ok',red:'warn',blue:'wait'};
+function say(k,c='blue',v){const m=$('msg');m.textContent='';if(!k)return;const s=document.createElement('span');s.className='tag t-'+c;s.textContent=t(TAG[c]);m.append(s,' '+t(k,v))}
+const fmt=ts=>new Date(ts).toLocaleString(L,{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+const nf=n=>new Intl.NumberFormat(L).format(n);
+
+// --- Minimal .zip reader (uses the browser's built-in decompressor, no libraries) ---
+async function readZip(buf){
+  const v=new DataView(buf),u8=new Uint8Array(buf),out={},td=new TextDecoder();
+  let e=buf.byteLength-22;const stop=Math.max(0,e-65557);
+  while(e>=stop&&v.getUint32(e,true)!==0x06054b50)e--;
+  if(e<stop)throw new Error('zip');
+  let p=v.getUint32(e+16,true);const n=v.getUint16(e+10,true);
+  for(let i=0;i<n;i++){
+    if(v.getUint32(p,true)!==0x02014b50)throw new Error('zip');
+    const method=v.getUint16(p+10,true),csize=v.getUint32(p+20,true),usize=v.getUint32(p+24,true),nl=v.getUint16(p+28,true),xl=v.getUint16(p+30,true),cl=v.getUint16(p+32,true),off=v.getUint32(p+42,true);
+    const name=td.decode(u8.subarray(p+46,p+46+nl));p+=46+nl+xl+cl;
+    if(!/(followers|following)[^/]*\.(json|html)$/i.test(name)||usize>MAX_ENTRY)continue;
+    const s=off+30+v.getUint16(off+26,true)+v.getUint16(off+28,true),data=u8.subarray(s,s+csize);
+    if(method===0)out[name]=td.decode(data);
+    else if(method===8)out[name]=await new Response(new Blob([data]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).text();
+  }
+  return out;
+}
+
+// --- Extract usernames from Instagram's files (JSON or HTML) ---
+function users(text){
+  const found=[];
+  if(/^\s*[\[{]/.test(text)){
+    const walk=o=>{if(Array.isArray(o))return o.forEach(walk);if(o&&typeof o==='object'){
+      if(Array.isArray(o.string_list_data)){const d=o.string_list_data[0]||{};found.push(d.value||o.title||String(d.href||'').split('/').filter(Boolean).pop()||'');return}
+      Object.values(o).forEach(walk)}};
+    walk(JSON.parse(text));
+  }else for(const m of text.matchAll(/instagram\.com\/(?:_u\/)?([A-Za-z0-9._]+)/g))found.push(m[1]);
+  return clean(found);
+}
+
+async function handle(files){
+  if(!files.length)return;
+  if(demo){demo=false;mem=null;$('demoBar').classList.add('hidden')}
+  const drop=$('drop');drop.classList.add('busy');say('reading');
+  try{
+    if(typeof DecompressionStream==='undefined'){say('old','red');return}
+    const all={};
+    for(const f of files){
+      if(f.size>MAX_FILE){say('tooBig','red');return}
+      if(/\.zip$/i.test(f.name)||f.type.includes('zip'))Object.assign(all,await readZip(await f.arrayBuffer()));
+      else all[f.name]=await f.text();
+    }
+    const fol=new Set(),ing=new Set();
+    for(const[name,txt]of Object.entries(all)){
+      const base=name.split('/').pop().toLowerCase();
+      if(/^followers/.test(base))users(txt).forEach(x=>fol.add(x));
+      else if(/^following\./.test(base))users(txt).forEach(x=>ing.add(x));
+    }
+    if(!fol.size){say('noFol','red');return}
+    const h=load();h.push({t:Date.now(),followers:[...fol].sort(),following:[...ing].sort()});save(h);
+    render();say('saved','green',{n:nf(fol.size)});
+    $('results').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  }catch{say('readErr','red')}
+  finally{drop.classList.remove('busy')}
+}
+
+// Lists are built without innerHTML: file content is never interpreted as code
+function list(el,arr,emptyKey){
+  el.replaceChildren(...(arr.length?arr.map(u=>{const li=document.createElement('li'),a=document.createElement('a');a.href='https://instagram.com/'+encodeURIComponent(u);a.target='_blank';a.rel='noopener noreferrer';a.textContent='@'+u;li.append(a);return li})
+    :[Object.assign(document.createElement('li'),{className:'empty',textContent:t(emptyKey)})]));
+}
+
+function render(){
+  const h=load(),hist=$('hist');
+  hist.replaceChildren(...(h.length?h.map((s,i)=>{const li=document.createElement('li'),d=document.createElement('div'),sp=document.createElement('span'),b=document.createElement('button');
+      sp.textContent=' · '+fmt(s.t);d.append(t('folN',{n:nf(s.followers.length)}),sp);b.type='button';b.className='btn ghost small';b.textContent=t('del');b.dataset.del=i;b.setAttribute('aria-label',t('del')+' '+fmt(s.t));li.append(d,b);return li}).reverse()
+    :[Object.assign(document.createElement('li'),{className:'empty',textContent:t('emptyHist')})]));
+  if(!h.length){$('results').classList.add('hidden');return}
+  const cur=h[h.length-1],prev=h[h.length-2],c=new Set(cur.followers),p=prev?new Set(prev.followers):null;
+  const nw=p?cur.followers.filter(x=>!p.has(x)):[],lost=p?prev.followers.filter(x=>!c.has(x)):[];
+  $('results').classList.remove('hidden');
+  $('nFollowers').textContent=nf(cur.followers.length);
+  const d=p?cur.followers.length-prev.followers.length:0;
+  $('dFollowers').textContent=p?t('vs',{d:(d>=0?'+':'')+nf(d)}):t('first');
+  $('nNew').textContent=nf(nw.length);$('nLost').textContent=nf(lost.length);
+  $('since').textContent=p?t('since',{d:fmt(prev.t)}):t('need2');
+  list($('lNew'),nw,p?'noneNew':'waitCmp');
+  list($('lLost'),lost,p?'noneLost':'waitCmp');
+  const not=cur.following.filter(x=>!c.has(x));
+  $('cNot').classList.toggle('hidden',!cur.following.length);
+  $('nNot').textContent=t('accounts',{n:nf(not.length)});list($('lNot'),not,'allBack');
+}
+
+// Example data, only with #demo in the address (never saved)
+function loadDemo(){
+  demo=true;const now=Date.now(),base=['lucia.mtz','dani_photo','marco.rossi','sakura.t','omar.k','ines_reads','tom.builds','yuki.cafe','leo_runs','nadia.art'];
+  mem=[{t:now-6*864e5,followers:[...base,'paulo.surf','kim.studio'].sort(),following:['lucia.mtz','marco.rossi','tom.builds','brand.store','chef.ana']},
+       {t:now,followers:[...base,'kim.studio','aria.draws','ben_travel','mei.ling'].sort(),following:['lucia.mtz','marco.rossi','tom.builds','brand.store','chef.ana']}];
+  $('demoBar').classList.remove('hidden');
+}
+
+// ---------- Events ----------
+const drop=$('drop');
+['dragenter','dragover'].forEach(e=>drop.addEventListener(e,ev=>{ev.preventDefault();drop.classList.add('over')}));
+['dragleave','drop'].forEach(e=>drop.addEventListener(e,ev=>{ev.preventDefault();drop.classList.remove('over')}));
+drop.addEventListener('drop',ev=>handle([...ev.dataTransfer.files]));
+$('file').addEventListener('change',ev=>{handle([...ev.target.files]);ev.target.value=''});
+// Delete in two taps (no pop-up dialogs, which some browsers block)
+$('hist').addEventListener('click',ev=>{const b=ev.target,i=b.dataset.del;if(i===undefined)return;
+  if(!b.dataset.sure){b.dataset.sure=1;b.textContent=t('sure');setTimeout(()=>{if(b.isConnected){delete b.dataset.sure;b.textContent=t('del')}},3000);return}
+  const h=load();h.splice(+i,1);save(h);render()});
+// Embedded pages can't download files: there the backup goes to the clipboard
+const embedded=(()=>{try{return window.top!==window}catch{return true}})();
+$('exp').addEventListener('click',async()=>{const h=load();if(!h.length||demo){say('nothing','red');return}
+  const txt=JSON.stringify(h);
+  if(embedded){try{await navigator.clipboard.writeText(txt);say('copied','green')}catch{say('copyFail','red')}return}
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:'application/json'}));a.download='follower-history.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)});
+$('impLabel').addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();$('imp').click()}});
+$('imp').addEventListener('change',async ev=>{
+  try{const raw=JSON.parse(await ev.target.files[0].text());if(!Array.isArray(raw))throw 0;
+    const h=raw.filter(s=>s&&Number.isFinite(s.t)).map(s=>({t:s.t,followers:clean(s.followers),following:clean(s.following)})).sort((a,b)=>a.t-b.t);
+    if(!h.length)throw 0;demo=false;$('demoBar').classList.add('hidden');save(h);render();say('loaded','green')}
+  catch{say('bad','red')}finally{ev.target.value=''}});
+const sel=$('langSel');
+for(const[code,d]of Object.entries(I18N)){const o=document.createElement('option');o.value=code;o.textContent=d._n;sel.append(o)}
+sel.addEventListener('change',()=>{try{localStorage.setItem(LKEY,sel.value)}catch{}applyLang(sel.value);say('')});
+const hashLang=/^#demo-?([a-z]{2})?$/.exec(location.hash);
+if(hashLang)loadDemo();
+applyLang(hashLang&&hashLang[1]&&I18N[hashLang[1]]?hashLang[1]:pickLang());
+</script>
+</body>
+</html>
