@@ -5,7 +5,7 @@
 <p align="center"><b>See who followed and who unfollowed you on Instagram.</b><br>
 Private, free, and safe for your account. No login, no password, no bots.</p>
 
-<p align="center"><a href="https://samutecyt.github.io/follower-diff/"><b>Open the app</b></a> · <a href="https://samutecyt.github.io/follower-diff/#demo">Try it with example data</a></p>
+<p align="center"><a href="https://samutecyt.github.io/follower-diff/"><b>Open the app</b></a> · <a href="https://github.com/SamuTecYT/follower-diff/releases/latest/download/Follower-Diff.html"><b>Download for PC / Mac</b></a> · <a href="https://samutecyt.github.io/follower-diff/#demo">Try it with example data</a></p>
 
 <p align="center">
   <a href="#español">Español</a> · <a href="#english">English</a>
@@ -25,6 +25,18 @@ Private, free, and safe for your account. No login, no password, no bots.</p>
 
 ## English
 
+### Get it
+**On a computer (Windows or Mac):**
+1. Click **[Download Follower Diff](https://github.com/SamuTecYT/follower-diff/releases/latest/download/Follower-Diff.html)**. You get one file: `Follower-Diff.html`.
+2. Double-click it. It opens in your browser and works **without internet**.
+3. Optional: drag the file to your desktop so it's always at hand.
+
+**On a phone (iPhone or Android):** open **[the app](https://samutecyt.github.io/follower-diff/)** in Safari or Chrome, tap **Share › Add to Home Screen**. It gets its own icon, like an app.
+
+### Optional account
+Want your history protected? Tap **Create account**: just a nickname and a password. Your history is then **encrypted on your device** (AES-256). There is no server: your password and your followers never leave your phone or computer. It's 100% optional, and the backup you save is encrypted too, so you can move it to another device and open it with the same password.
+If you forget the password it can't be recovered, because no one else has it.
+
 ### What it does
 Instagram lets you download your own data, including your list of followers. Follower Diff takes that file and compares it with the previous one, so you can see:
 
@@ -35,6 +47,8 @@ Instagram lets you download your own data, including your list of followers. Fol
 - **Mutual follows**: everyone you follow who also follows you
 - **Search any user** to see at once if you follow each other, only one way, or not at all. All lists filter as you type
 - Built for **big accounts**: tested with 100,000 followers. Long lists load in pages, so the app stays fast
+- **Copy any list** with one tap
+- **Dark mode** that follows your device
 - A **history** of every snapshot, with follower counts and dates
 
 ### Why it can't get you banned
@@ -62,6 +76,18 @@ English, Español, Português, Français, Deutsch, Italiano, Русский, Tü
 
 ## Español
 
+### Descargarlo
+**En el ordenador (Windows o Mac):**
+1. Pulsa **[Descargar Follower Diff](https://github.com/SamuTecYT/follower-diff/releases/latest/download/Follower-Diff.html)**. Se baja un único archivo: `Follower-Diff.html`.
+2. Haz doble clic en él. Se abre en tu navegador y funciona **sin internet**.
+3. Si quieres, arrástralo al escritorio para tenerlo siempre a mano.
+
+**En el móvil (iPhone o Android):** abre **[la app](https://samutecyt.github.io/follower-diff/)** en Safari o Chrome y pulsa **Compartir › Añadir a pantalla de inicio**. Tendrá su propio icono, como una app.
+
+### Cuenta opcional
+¿Quieres proteger tu historial? Pulsa **Crear cuenta**: solo un apodo y una contraseña. Tu historial se guarda **cifrado en tu aparato** (AES-256). No hay servidor: tu contraseña y tus seguidores nunca salen de tu móvil u ordenador. Es 100% opcional, y la copia que guardes también va cifrada, así que puedes pasarla a otro aparato y abrirla con la misma contraseña.
+Si olvidas la contraseña no se puede recuperar, porque nadie más la tiene.
+
 ### Qué hace
 Instagram te deja descargar tus propios datos, incluida tu lista de seguidores. Follower Diff compara ese archivo con el anterior y te muestra:
 
@@ -72,6 +98,8 @@ Instagram te deja descargar tus propios datos, incluida tu lista de seguidores. 
 - **Seguidores mutuos**: quién te sigue y tú también le sigues
 - **Busca cualquier usuario** y ve al momento si os seguís, si solo te sigue uno de los dos o ninguno. Todas las listas se filtran mientras escribes
 - Pensado para **cuentas grandes**: probado con 100.000 seguidores. Las listas largas se cargan por partes para que todo vaya rápido
+- **Copia cualquier lista** con un toque
+- **Modo oscuro** automático según tu aparato
 - Un **historial** con cada registro, su fecha y el número de seguidores
 
 ### Por qué no te pueden banear

@@ -2,3 +2,4 @@ dist/
 *.zip
 *.json
 __pycache__/
+.claude/

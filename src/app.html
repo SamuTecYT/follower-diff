@@ -8,7 +8,8 @@
 <meta name="referrer" content="no-referrer">
 <title>Follower Diff</title>
 <meta name="description" content="See who followed and unfollowed you on Instagram using Instagram's official data export. 100% private, runs in your browser.">
-<meta name="theme-color" content="#F7F6F3">
+<meta name="theme-color" content="#F7F6F3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#191918" media="(prefers-color-scheme: dark)">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Follower Diff">
 <link rel="icon" href="__LOGO_SVG__">
@@ -21,9 +22,16 @@
   --sans:-apple-system,'SF Pro Display','Helvetica Neue','Segoe UI Variable Display','Segoe UI','Noto Sans',sans-serif;
   --serif:'New York','Iowan Old Style','Palatino Linotype',Georgia,'Noto Serif',serif;
   --mono:'SF Mono','Cascadia Mono',Consolas,monospace;
+  --on-ink:#FFFFFF;--ink-hover:#333333;--hover:#FBFBFA;--line-strong:#D6D4CE;--line-hover:#B9B6AE;--av-bg:88%;--av-fg:28%;
+  --ease-out:cubic-bezier(0.23,1,0.32,1);
   --r:12px;--r-sm:6px;--t:.2s;
   color-scheme:light;
 }
+@media (prefers-color-scheme:dark){:root{
+  --bg:#191918;--card:#21211F;--line:#33322F;--ink:#D6D5D1;--ink-strong:#F4F3EF;--muted:#9C9A94;
+  --green-bg:#1E2D21;--green:#93CF9C;--red-bg:#3A2324;--red:#F2A4A0;--yellow-bg:#352C17;--yellow:#E6C27E;--blue-bg:#192C3B;--blue:#8EC6EF;
+  --on-ink:#111111;--ink-hover:#D9D8D3;--hover:#262624;--line-strong:#46453F;--line-hover:#5E5C55;--av-bg:28%;--av-fg:86%;
+  color-scheme:dark}}
 *{box-sizing:border-box;margin:0}
 html{-webkit-text-size-adjust:100%}
 body{background:var(--bg);color:var(--ink);font:15px/1.6 var(--sans);min-height:100vh}
@@ -47,22 +55,24 @@ h1{font:400 56px/1.1 var(--serif);letter-spacing:-.03em;color:var(--ink-strong);
 .step::before{content:counter(s);display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--bg);border:1px solid var(--line);font:500 12px var(--mono);margin-bottom:8px}
 .step b{display:block;color:var(--ink-strong)}
 .step span{color:var(--muted);font-size:13px}
-.drop{display:block;border:1px dashed #D6D4CE;border-radius:var(--r);background:var(--card);padding:48px 32px;text-align:center;cursor:pointer;transition:background var(--t),border-color var(--t)}
-.drop:hover,.drop.over{background:#FBFBFA;border-color:#B9B6AE}
+.drop{display:block;border:1px dashed var(--line-strong);border-radius:var(--r);background:var(--card);padding:48px 32px;text-align:center;cursor:pointer;transition:background var(--t),border-color var(--t)}
+.drop.over{background:var(--hover);border-color:var(--line-hover)}
+@media (hover:hover) and (pointer:fine){.drop:hover{background:var(--hover);border-color:var(--line-hover)}}
 .drop:focus-within{outline:2px solid var(--ink-strong);outline-offset:2px}
 .drop strong{display:block;color:var(--ink-strong);font-weight:600;margin:12px 0 4px}
 .drop span{color:var(--muted);font-size:13px}
 .drop.busy{opacity:.6;pointer-events:none}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;font:500 14px var(--sans);background:var(--ink-strong);color:#fff;border:0;border-radius:var(--r-sm);padding:10px 16px;cursor:pointer;text-decoration:none;transition:background var(--t),transform .1s}
-.btn:hover{background:#333}.btn:active{transform:scale(.98)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:44px;font:500 14px var(--sans);background:var(--ink-strong);color:var(--on-ink);border:0;border-radius:var(--r-sm);padding:10px 16px;cursor:pointer;text-decoration:none;transition:background-color var(--t),transform .12s var(--ease-out)}
+.btn:active{transform:scale(.97)}
+.btn:disabled{opacity:.5;cursor:default}
 .btn:focus-visible,a:focus-visible,summary:focus-visible{outline:2px solid var(--ink-strong);outline-offset:2px}
 .btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
-.btn.ghost:hover{background:#fff}
+@media (hover:hover) and (pointer:fine){.btn:hover{background:var(--ink-hover)}.btn.ghost:hover{background:var(--card)}}
 .btn.small{min-height:36px;padding:4px 12px;font-size:12px}
 .msg{margin-top:16px;font-size:14px;min-height:24px}
 .grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:48px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;transition:box-shadow var(--t);min-width:0}
-.card:hover{box-shadow:0 2px 8px rgba(0,0,0,.04)}
+@media (hover:hover) and (pointer:fine){.card:hover{box-shadow:0 2px 8px rgba(0,0,0,.04)}}
 .span2{grid-column:span 2}.span3{grid-column:span 3}.span6{grid-column:span 6}
 .num{font:400 44px/1 var(--serif);letter-spacing:-.02em;color:var(--ink-strong);margin-top:8px;font-variant-numeric:tabular-nums}
 .delta{font:500 12px var(--mono);margin-top:8px;color:var(--muted)}
@@ -77,8 +87,25 @@ h1{font:400 56px/1.1 var(--serif);letter-spacing:-.03em;color:var(--ink-strong);
 .search{width:100%;min-height:48px;padding:12px 16px;border:1px solid var(--line);border-radius:8px;background:transparent;color:var(--ink-strong);font:inherit;font-size:16px}
 .search:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
 .qres{margin-top:12px;min-height:24px;font-size:14px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.av{flex:none;width:32px;height:32px;border-radius:50%;display:inline-grid;place-items:center;font:600 13px/1 var(--mono);text-transform:uppercase;background:hsl(var(--h) 45% 88%);color:hsl(var(--h) 45% 28%)}
+.av{flex:none;width:32px;height:32px;border-radius:50%;display:inline-grid;place-items:center;font:600 13px/1 var(--mono);text-transform:uppercase;background:hsl(var(--h) 40% var(--av-bg));color:hsl(var(--h) 45% var(--av-fg))}
 .list li .who{display:flex;align-items:center;gap:12px;min-width:0}
+.ch{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ch .cp{margin-inline-start:auto}
+.acct{margin-top:16px;padding:16px 24px}
+.acct-row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.acct-row>div:first-child{flex:1;min-width:200px}
+.acct b{display:block;color:var(--ink-strong)}
+.acct span{color:var(--muted);font-size:13px}
+.aform{display:grid;gap:8px;margin-top:16px;max-width:420px}
+.aform .search{min-height:44px;padding:8px 12px}
+.fine{font-size:12px;color:var(--muted)}
+.qres>*{transition:opacity .15s var(--ease-out),transform .15s var(--ease-out)}
+@media (prefers-reduced-motion:no-preference){
+  @starting-style{.qres>*{opacity:0;transform:translateY(4px)}}
+  .aform{transition:opacity .2s var(--ease-out),transform .2s var(--ease-out)}
+  @starting-style{.aform{opacity:0;transform:translateY(-6px)}}
+}
+@media (prefers-reduced-motion:reduce){@starting-style{.qres>*{opacity:0}}}
 .list li.more{justify-content:center;border-bottom:0}
 h2{font:400 32px/1.1 var(--serif);letter-spacing:-.02em;color:var(--ink-strong);margin:64px 0 16px}
 details{border-bottom:1px solid var(--line);padding:16px 0}
@@ -104,6 +131,7 @@ footer a{color:var(--ink-strong);font-weight:600}
 @media (prefers-reduced-motion:no-preference){
   .reveal{animation:in .6s cubic-bezier(.16,1,.3,1) both;animation-delay:calc(var(--i,0)*80ms)}
   @keyframes in{from{opacity:.001;transform:translateY(12px)}}
+  .grid .reveal{animation-duration:.4s;animation-delay:calc(var(--i,0)*50ms)}
 }
 @media (max-width:720px){
   main{padding-block-start:24px}
@@ -128,7 +156,7 @@ footer a{color:var(--ink-strong);font-weight:600}
     <img src="__LOGO_SVG__" alt="">
     <div class="brand"><div class="eyebrow" data-t="eyebrow"></div><div style="font-weight:600;color:var(--ink-strong)" data-t="app"></div></div>
     <label class="lang" for="langSel">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg>
       <select id="langSel" aria-label="Language"></select>
     </label>
   </header>
@@ -157,17 +185,40 @@ footer a{color:var(--ink-strong);font-weight:600}
   </label>
   <div class="msg" id="msg" role="status" aria-live="polite"></div>
 
+  <section class="card acct" id="acct" aria-labelledby="acT">
+    <div id="aNone">
+      <div class="acct-row"><div><b id="acT" data-t="acTitle"></b><span data-t="acSub"></span></div><button type="button" class="btn ghost small" id="aOpen" data-t="acCreate" aria-expanded="false" aria-controls="aNew"></button></div>
+      <form id="aNew" class="aform hidden" novalidate>
+        <input class="search" id="aName" autocomplete="username" data-tp="acName" maxlength="40" required>
+        <input class="search" id="aPass" type="password" autocomplete="new-password" data-tp="acPass" required>
+        <input class="search" id="aPass2" type="password" autocomplete="new-password" data-tp="acPass2" required>
+        <button class="btn" data-t="acCreate"></button>
+        <p class="fine" data-t="acWarn"></p>
+      </form>
+    </div>
+    <form id="aLock" class="hidden" novalidate>
+      <div class="acct-row"><div><b id="aHello"></b><span data-t="acLockedSub"></span></div></div>
+      <div class="aform">
+        <input id="aUser" autocomplete="username" class="hidden" tabindex="-1" aria-hidden="true">
+        <input class="search" id="aPassIn" type="password" autocomplete="current-password" data-tp="acPass" required>
+        <button class="btn" data-t="acEnter"></button>
+        <button type="button" class="btn ghost small" id="aForgot" data-t="acForgot"></button>
+      </div>
+    </form>
+    <div id="aIn" class="acct-row hidden"><div><b id="aHi"></b><span data-t="acOpenSub"></span></div><div class="row" style="margin-top:0"><button type="button" class="btn ghost small" id="aOut" data-t="acOut"></button><button type="button" class="btn ghost small" id="aRemove" data-t="acRemove"></button></div></div>
+  </section>
+
   <section id="results" class="hidden">
     <div class="grid">
-      <div class="card span2"><div class="eyebrow" data-t="kFol"></div><div class="num" id="nFollowers">0</div><div class="delta" id="dFollowers"></div></div>
-      <div class="card span2"><div class="eyebrow" data-t="kNew"></div><div class="num" id="nNew" style="color:var(--green)">0</div><div class="delta" id="since"></div></div>
-      <div class="card span2"><div class="eyebrow" data-t="kLost"></div><div class="num" id="nLost" style="color:var(--red)">0</div><div class="delta" data-t="sinceLast"></div></div>
-      <div class="card span6"><input type="search" class="search" id="q" data-tp="qPh" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="31"><div class="qres" id="qRes" aria-live="polite"></div></div>
-      <div class="card span3"><span class="tag t-green" data-t="tNew"></span><ul class="list" id="lNew"></ul></div>
-      <div class="card span3"><span class="tag t-red" data-t="tLost"></span><ul class="list" id="lLost"></ul></div>
-      <div class="card span6" id="cNot"><span class="tag t-yellow" data-t="tNot"></span> <span class="eyebrow" id="nNot"></span><ul class="list" id="lNot"></ul></div>
-      <div class="card span6" id="cFans"><span class="tag t-blue" data-t="tFans"></span> <span class="eyebrow" id="nFans"></span><ul class="list" id="lFans"></ul></div>
-      <div class="card span6" id="cMut"><span class="tag t-green" data-t="tMut"></span> <span class="eyebrow" id="nMut"></span><ul class="list" id="lMut"></ul></div>
+      <div class="card reveal span2" style="--i:0"><div class="eyebrow" data-t="kFol"></div><div class="num" id="nFollowers">0</div><div class="delta" id="dFollowers"></div></div>
+      <div class="card reveal span2" style="--i:1"><div class="eyebrow" data-t="kNew"></div><div class="num" id="nNew" style="color:var(--green)">0</div><div class="delta" id="since"></div></div>
+      <div class="card reveal span2" style="--i:2"><div class="eyebrow" data-t="kLost"></div><div class="num" id="nLost" style="color:var(--red)">0</div><div class="delta" data-t="sinceLast"></div></div>
+      <div class="card reveal span6" style="--i:3"><input type="search" class="search" id="q" data-tp="qPh" autocomplete="off" autocapitalize="none" spellcheck="false" maxlength="31"><div class="qres" id="qRes" aria-live="polite"></div></div>
+      <div class="card reveal span3" style="--i:4"><div class="ch"><span class="tag t-green" data-t="tNew"></span><button type="button" class="btn ghost small cp" data-l="lNew" data-t="copy"></button></div><ul class="list" id="lNew"></ul></div>
+      <div class="card reveal span3" style="--i:5"><div class="ch"><span class="tag t-red" data-t="tLost"></span><button type="button" class="btn ghost small cp" data-l="lLost" data-t="copy"></button></div><ul class="list" id="lLost"></ul></div>
+      <div class="card reveal span6" id="cNot" style="--i:6"><div class="ch"><span class="tag t-yellow" data-t="tNot"></span> <span class="eyebrow" id="nNot"></span><button type="button" class="btn ghost small cp" data-l="lNot" data-t="copy"></button></div><ul class="list" id="lNot"></ul></div>
+      <div class="card reveal span6" id="cFans" style="--i:7"><div class="ch"><span class="tag t-blue" data-t="tFans"></span> <span class="eyebrow" id="nFans"></span><button type="button" class="btn ghost small cp" data-l="lFans" data-t="copy"></button></div><ul class="list" id="lFans"></ul></div>
+      <div class="card reveal span6" id="cMut" style="--i:8"><div class="ch"><span class="tag t-green" data-t="tMut"></span> <span class="eyebrow" id="nMut"></span><button type="button" class="btn ghost small cp" data-l="lMut" data-t="copy"></button></div><ul class="list" id="lMut"></ul></div>
     </div>
   </section>
 
@@ -411,6 +462,10 @@ ko:{tMut:"맞팔로우",noMut:"아직 맞팔로우가 없어요.",qPh:"사용자
 id:{tMut:"Saling mengikuti",noMut:"Belum ada yang saling mengikuti.",qPh:"Cari pengguna, mis. @nama",tFans:"Mengikutimu, kamu tidak",more:"Tampilkan lagi ({n} tersisa)",noMatch:"Tidak ada yang cocok.",stBoth:"Saling mengikuti",stThey:"Mengikutimu, kamu tidak",stFol:"Mengikutimu",stYou:"Kamu ikuti, dia tidak",stNone:"Tidak ada di pengikut maupun yang diikuti.",stNew:"Baru sejak terakhir kali",stLost:"Berhenti mengikutimu",matches:"Cocok: {n}. Lihat daftar di bawah.",allFans:"Kamu mengikuti semua pengikutmu."}
 };
 for(const[c,x]of Object.entries(EXTRA2))Object.assign(I18N[c],x);
+// Account, copy and duplicate-file texts
+const EXTRA3={"es":{"copy":"Copiar","copiedList":"Lista copiada ({n} cuentas).","sameFile":"Este archivo ya estaba guardado: no hay cambios nuevos.","acTitle":"Cuenta (opcional)","acSub":"Protege tu historial con una contraseña. Todo sigue guardado solo en tu aparato.","acName":"Tu nombre o apodo","acPass":"Contraseña","acPass2":"Repite la contraseña","acCreate":"Crear cuenta","acWarn":"Tu historial se guarda cifrado. Si olvidas la contraseña no se puede recuperar: nadie más la tiene.","acLockedSub":"Tu historial está cifrado. Escribe tu contraseña para verlo.","acHello":"Hola, {n}","acEnter":"Entrar","acForgot":"La olvidé: empezar de cero","acSure":"Toca otra vez para borrar todo","acOpenSub":"Sesión abierta. Tu historial se guarda cifrado en este aparato.","acOut":"Cerrar sesión","acRemove":"Quitar contraseña","acNeedName":"Escribe un nombre o apodo.","acShort":"Usa al menos 6 caracteres.","acMismatch":"Las contraseñas no coinciden.","acMade":"Cuenta creada. Tu historial ya está cifrado.","acWelcome":"Sesión abierta.","acWrong":"Contraseña incorrecta.","acBye":"Sesión cerrada. Tu historial sigue cifrado.","acRemoved":"Contraseña quitada. El historial queda sin cifrar en este aparato.","acReset":"Todo borrado. Puedes empezar de cero.","acStore":"No se pudo guardar en este navegador.","needUnlock":"Primero entra con tu contraseña.","encLoaded":"Copia cifrada cargada. Escribe su contraseña para abrirla.","lockedHist":"Historial protegido. Entra con tu contraseña para verlo."},"en":{"copy":"Copy","copiedList":"List copied ({n} accounts).","sameFile":"This file was already saved: nothing new.","acTitle":"Account (optional)","acSub":"Protect your history with a password. Everything stays on your device only.","acName":"Your name or nickname","acPass":"Password","acPass2":"Repeat password","acCreate":"Create account","acWarn":"Your history is stored encrypted. If you forget the password it can't be recovered: no one else has it.","acLockedSub":"Your history is encrypted. Type your password to see it.","acHello":"Hi, {n}","acEnter":"Sign in","acForgot":"I forgot it: start over","acSure":"Tap again to erase everything","acOpenSub":"Signed in. Your history is stored encrypted on this device.","acOut":"Sign out","acRemove":"Remove password","acNeedName":"Type a name or nickname.","acShort":"Use at least 6 characters.","acMismatch":"Passwords don't match.","acMade":"Account created. Your history is now encrypted.","acWelcome":"Signed in.","acWrong":"Wrong password.","acBye":"Signed out. Your history stays encrypted.","acRemoved":"Password removed. The history is now unencrypted on this device.","acReset":"Everything erased. You can start over.","acStore":"Couldn't save in this browser.","needUnlock":"Sign in with your password first.","encLoaded":"Encrypted backup loaded. Type its password to open it.","lockedHist":"History protected. Sign in to see it."},"pt":{"copy":"Copiar","copiedList":"Lista copiada ({n} contas).","sameFile":"Este arquivo já estava salvo: nada novo.","acTitle":"Conta (opcional)","acSub":"Proteja seu histórico com uma senha. Tudo continua só no seu aparelho.","acName":"Seu nome ou apelido","acPass":"Senha","acPass2":"Repita a senha","acCreate":"Criar conta","acWarn":"Seu histórico é salvo criptografado. Se esquecer a senha, não dá para recuperar: ninguém mais a tem.","acLockedSub":"Seu histórico está criptografado. Digite a senha para vê-lo.","acHello":"Olá, {n}","acEnter":"Entrar","acForgot":"Esqueci: começar do zero","acSure":"Toque de novo para apagar tudo","acOpenSub":"Sessão aberta. Seu histórico é salvo criptografado neste aparelho.","acOut":"Sair","acRemove":"Remover senha","acNeedName":"Digite um nome ou apelido.","acShort":"Use pelo menos 6 caracteres.","acMismatch":"As senhas não coincidem.","acMade":"Conta criada. Seu histórico agora está criptografado.","acWelcome":"Sessão aberta.","acWrong":"Senha incorreta.","acBye":"Sessão encerrada. O histórico continua criptografado.","acRemoved":"Senha removida. O histórico fica sem criptografia neste aparelho.","acReset":"Tudo apagado. Pode começar do zero.","acStore":"Não foi possível salvar neste navegador.","needUnlock":"Primeiro entre com sua senha.","encLoaded":"Cópia criptografada carregada. Digite a senha para abri-la.","lockedHist":"Histórico protegido. Entre para vê-lo."},"fr":{"copy":"Copier","copiedList":"Liste copiée ({n} comptes).","sameFile":"Ce fichier était déjà enregistré : rien de nouveau.","acTitle":"Compte (facultatif)","acSub":"Protégez votre historique par un mot de passe. Tout reste uniquement sur votre appareil.","acName":"Votre nom ou pseudo","acPass":"Mot de passe","acPass2":"Répétez le mot de passe","acCreate":"Créer un compte","acWarn":"Votre historique est chiffré. Un mot de passe oublié ne peut pas être récupéré : personne d’autre ne l’a.","acLockedSub":"Votre historique est chiffré. Saisissez votre mot de passe pour le voir.","acHello":"Bonjour, {n}","acEnter":"Se connecter","acForgot":"Oublié : tout recommencer","acSure":"Touchez encore pour tout effacer","acOpenSub":"Connecté. Votre historique est chiffré sur cet appareil.","acOut":"Se déconnecter","acRemove":"Retirer le mot de passe","acNeedName":"Saisissez un nom ou pseudo.","acShort":"Au moins 6 caractères.","acMismatch":"Les mots de passe ne correspondent pas.","acMade":"Compte créé. Votre historique est chiffré.","acWelcome":"Connecté.","acWrong":"Mot de passe incorrect.","acBye":"Déconnecté. L’historique reste chiffré.","acRemoved":"Mot de passe retiré. L’historique n’est plus chiffré sur cet appareil.","acReset":"Tout est effacé. Vous pouvez recommencer.","acStore":"Impossible d’enregistrer dans ce navigateur.","needUnlock":"Connectez-vous d’abord avec votre mot de passe.","encLoaded":"Sauvegarde chiffrée chargée. Saisissez son mot de passe.","lockedHist":"Historique protégé. Connectez-vous pour le voir."},"de":{"copy":"Kopieren","copiedList":"Liste kopiert ({n} Konten).","sameFile":"Diese Datei war schon gespeichert: nichts Neues.","acTitle":"Konto (optional)","acSub":"Schütze deinen Verlauf mit einem Passwort. Alles bleibt nur auf deinem Gerät.","acName":"Dein Name oder Spitzname","acPass":"Passwort","acPass2":"Passwort wiederholen","acCreate":"Konto erstellen","acWarn":"Dein Verlauf wird verschlüsselt gespeichert. Ein vergessenes Passwort lässt sich nicht wiederherstellen: niemand sonst hat es.","acLockedSub":"Dein Verlauf ist verschlüsselt. Gib dein Passwort ein.","acHello":"Hallo, {n}","acEnter":"Anmelden","acForgot":"Vergessen: neu anfangen","acSure":"Nochmal tippen, um alles zu löschen","acOpenSub":"Angemeldet. Dein Verlauf ist auf diesem Gerät verschlüsselt.","acOut":"Abmelden","acRemove":"Passwort entfernen","acNeedName":"Gib einen Namen ein.","acShort":"Mindestens 6 Zeichen.","acMismatch":"Die Passwörter stimmen nicht überein.","acMade":"Konto erstellt. Dein Verlauf ist jetzt verschlüsselt.","acWelcome":"Angemeldet.","acWrong":"Falsches Passwort.","acBye":"Abgemeldet. Der Verlauf bleibt verschlüsselt.","acRemoved":"Passwort entfernt. Der Verlauf ist auf diesem Gerät unverschlüsselt.","acReset":"Alles gelöscht. Du kannst neu anfangen.","acStore":"Speichern in diesem Browser nicht möglich.","needUnlock":"Melde dich zuerst mit deinem Passwort an.","encLoaded":"Verschlüsselte Sicherung geladen. Gib ihr Passwort ein.","lockedHist":"Verlauf geschützt. Melde dich an, um ihn zu sehen."},"it":{"copy":"Copia","copiedList":"Lista copiata ({n} account).","sameFile":"Questo file era già salvato: niente di nuovo.","acTitle":"Account (facoltativo)","acSub":"Proteggi la cronologia con una password. Tutto resta solo sul tuo dispositivo.","acName":"Il tuo nome o soprannome","acPass":"Password","acPass2":"Ripeti la password","acCreate":"Crea account","acWarn":"La cronologia è salvata cifrata. Se dimentichi la password non si può recuperare: nessun altro ce l’ha.","acLockedSub":"La cronologia è cifrata. Scrivi la password per vederla.","acHello":"Ciao, {n}","acEnter":"Entra","acForgot":"L’ho dimenticata: ricomincia","acSure":"Tocca di nuovo per cancellare tutto","acOpenSub":"Sessione aperta. La cronologia è cifrata su questo dispositivo.","acOut":"Esci","acRemove":"Togli password","acNeedName":"Scrivi un nome o soprannome.","acShort":"Almeno 6 caratteri.","acMismatch":"Le password non coincidono.","acMade":"Account creato. La cronologia ora è cifrata.","acWelcome":"Sessione aperta.","acWrong":"Password errata.","acBye":"Sessione chiusa. La cronologia resta cifrata.","acRemoved":"Password tolta. La cronologia non è più cifrata su questo dispositivo.","acReset":"Tutto cancellato. Puoi ricominciare.","acStore":"Impossibile salvare in questo browser.","needUnlock":"Prima entra con la tua password.","encLoaded":"Copia cifrata caricata. Scrivi la sua password.","lockedHist":"Cronologia protetta. Entra per vederla."},"ru":{"copy":"Копировать","copiedList":"Список скопирован ({n}).","sameFile":"Этот файл уже сохранён: ничего нового.","acTitle":"Аккаунт (необязательно)","acSub":"Защитите историю паролем. Всё остаётся только на вашем устройстве.","acName":"Имя или ник","acPass":"Пароль","acPass2":"Повторите пароль","acCreate":"Создать аккаунт","acWarn":"История хранится в зашифрованном виде. Забытый пароль восстановить нельзя: он есть только у вас.","acLockedSub":"История зашифрована. Введите пароль, чтобы её увидеть.","acHello":"Привет, {n}","acEnter":"Войти","acForgot":"Забыл: начать заново","acSure":"Нажмите ещё раз, чтобы всё удалить","acOpenSub":"Вы вошли. История зашифрована на этом устройстве.","acOut":"Выйти","acRemove":"Убрать пароль","acNeedName":"Введите имя или ник.","acShort":"Минимум 6 символов.","acMismatch":"Пароли не совпадают.","acMade":"Аккаунт создан. История зашифрована.","acWelcome":"Вы вошли.","acWrong":"Неверный пароль.","acBye":"Вы вышли. История остаётся зашифрованной.","acRemoved":"Пароль убран. История на этом устройстве больше не зашифрована.","acReset":"Всё удалено. Можно начать заново.","acStore":"Не удалось сохранить в этом браузере.","needUnlock":"Сначала войдите с паролем.","encLoaded":"Зашифрованная копия загружена. Введите её пароль.","lockedHist":"История защищена. Войдите, чтобы её увидеть."},"tr":{"copy":"Kopyala","copiedList":"Liste kopyalandı ({n} hesap).","sameFile":"Bu dosya zaten kayıtlı: yeni bir şey yok.","acTitle":"Hesap (isteğe bağlı)","acSub":"Geçmişini bir şifreyle koru. Her şey yalnızca cihazında kalır.","acName":"Adın veya takma adın","acPass":"Şifre","acPass2":"Şifreyi tekrarla","acCreate":"Hesap oluştur","acWarn":"Geçmişin şifrelenmiş olarak saklanır. Şifreyi unutursan kurtarılamaz: başka kimsede yok.","acLockedSub":"Geçmişin şifreli. Görmek için şifreni yaz.","acHello":"Merhaba, {n}","acEnter":"Giriş yap","acForgot":"Unuttum: baştan başla","acSure":"Her şeyi silmek için tekrar dokun","acOpenSub":"Giriş yapıldı. Geçmişin bu cihazda şifreli.","acOut":"Çıkış yap","acRemove":"Şifreyi kaldır","acNeedName":"Bir ad yaz.","acShort":"En az 6 karakter.","acMismatch":"Şifreler eşleşmiyor.","acMade":"Hesap oluşturuldu. Geçmişin artık şifreli.","acWelcome":"Giriş yapıldı.","acWrong":"Yanlış şifre.","acBye":"Çıkış yapıldı. Geçmiş şifreli kalır.","acRemoved":"Şifre kaldırıldı. Geçmiş bu cihazda artık şifresiz.","acReset":"Her şey silindi. Baştan başlayabilirsin.","acStore":"Bu tarayıcıya kaydedilemedi.","needUnlock":"Önce şifrenle giriş yap.","encLoaded":"Şifreli yedek yüklendi. Açmak için şifresini yaz.","lockedHist":"Geçmiş korumalı. Görmek için giriş yap."},"ar":{"copy":"نسخ","copiedList":"تم نسخ القائمة ({n}).","sameFile":"هذا الملف محفوظ مسبقًا: لا جديد.","acTitle":"حساب (اختياري)","acSub":"احمِ سجلك بكلمة مرور. يبقى كل شيء على جهازك فقط.","acName":"اسمك أو لقبك","acPass":"كلمة المرور","acPass2":"أعد كلمة المرور","acCreate":"إنشاء حساب","acWarn":"يُحفظ سجلك مشفرًا. إذا نسيت كلمة المرور فلا يمكن استعادتها: لا أحد غيرك يملكها.","acLockedSub":"سجلك مشفر. اكتب كلمة المرور لرؤيته.","acHello":"مرحبًا، {n}","acEnter":"دخول","acForgot":"نسيتها: ابدأ من جديد","acSure":"انقر مرة أخرى لحذف كل شيء","acOpenSub":"تم الدخول. سجلك محفوظ مشفرًا على هذا الجهاز.","acOut":"خروج","acRemove":"إزالة كلمة المرور","acNeedName":"اكتب اسمًا أو لقبًا.","acShort":"6 أحرف على الأقل.","acMismatch":"كلمتا المرور غير متطابقتين.","acMade":"تم إنشاء الحساب. سجلك مشفر الآن.","acWelcome":"تم الدخول.","acWrong":"كلمة مرور خاطئة.","acBye":"تم الخروج. يبقى السجل مشفرًا.","acRemoved":"أُزيلت كلمة المرور. السجل غير مشفر على هذا الجهاز.","acReset":"حُذف كل شيء. يمكنك البدء من جديد.","acStore":"تعذّر الحفظ في هذا المتصفح.","needUnlock":"ادخل بكلمة المرور أولًا.","encLoaded":"تم تحميل نسخة مشفرة. اكتب كلمة مرورها لفتحها.","lockedHist":"السجل محمي. ادخل لرؤيته."},"hi":{"copy":"कॉपी","copiedList":"सूची कॉपी हुई ({n})।","sameFile":"यह फ़ाइल पहले से सहेजी है: कुछ नया नहीं।","acTitle":"अकाउंट (वैकल्पिक)","acSub":"अपना इतिहास पासवर्ड से सुरक्षित करें। सब कुछ सिर्फ़ आपके डिवाइस पर रहता है।","acName":"आपका नाम या उपनाम","acPass":"पासवर्ड","acPass2":"पासवर्ड दोबारा","acCreate":"अकाउंट बनाएँ","acWarn":"इतिहास एन्क्रिप्ट होकर सहेजा जाता है। पासवर्ड भूलने पर वापस नहीं मिलेगा: वह किसी और के पास नहीं है।","acLockedSub":"आपका इतिहास एन्क्रिप्टेड है। देखने के लिए पासवर्ड लिखें।","acHello":"नमस्ते, {n}","acEnter":"प्रवेश करें","acForgot":"भूल गया: फिर से शुरू करें","acSure":"सब मिटाने के लिए फिर टैप करें","acOpenSub":"साइन इन हो गया। इतिहास इस डिवाइस पर एन्क्रिप्टेड है।","acOut":"साइन आउट","acRemove":"पासवर्ड हटाएँ","acNeedName":"नाम या उपनाम लिखें।","acShort":"कम से कम 6 अक्षर।","acMismatch":"पासवर्ड मेल नहीं खाते।","acMade":"अकाउंट बन गया। इतिहास अब एन्क्रिप्टेड है।","acWelcome":"साइन इन हो गया।","acWrong":"गलत पासवर्ड।","acBye":"साइन आउट हो गया। इतिहास एन्क्रिप्टेड रहता है।","acRemoved":"पासवर्ड हटा दिया। इस डिवाइस पर इतिहास अब एन्क्रिप्टेड नहीं है।","acReset":"सब मिटा दिया। फिर से शुरू कर सकते हैं।","acStore":"इस ब्राउज़र में सहेजा नहीं जा सका।","needUnlock":"पहले पासवर्ड से प्रवेश करें।","encLoaded":"एन्क्रिप्टेड बैकअप लोड हुआ। खोलने के लिए उसका पासवर्ड लिखें।","lockedHist":"इतिहास सुरक्षित है। देखने के लिए प्रवेश करें।"},"zh":{"copy":"复制","copiedList":"已复制列表（{n} 个）。","sameFile":"这个文件已经保存过：没有新变化。","acTitle":"账户（可选）","acSub":"用密码保护你的历史记录。所有内容仍只保存在你的设备上。","acName":"你的名字或昵称","acPass":"密码","acPass2":"再次输入密码","acCreate":"创建账户","acWarn":"历史记录会加密保存。忘记密码将无法找回：只有你知道它。","acLockedSub":"你的历史记录已加密。输入密码即可查看。","acHello":"你好，{n}","acEnter":"登录","acForgot":"忘记了：重新开始","acSure":"再点一次以清除全部","acOpenSub":"已登录。历史记录在此设备上加密保存。","acOut":"退出","acRemove":"移除密码","acNeedName":"请输入名字或昵称。","acShort":"至少 6 个字符。","acMismatch":"两次密码不一致。","acMade":"账户已创建。历史记录已加密。","acWelcome":"已登录。","acWrong":"密码错误。","acBye":"已退出。历史记录仍保持加密。","acRemoved":"已移除密码。此设备上的历史记录不再加密。","acReset":"已全部清除，可以重新开始。","acStore":"无法在此浏览器中保存。","needUnlock":"请先用密码登录。","encLoaded":"已载入加密备份。输入其密码即可打开。","lockedHist":"历史记录受保护。登录后查看。"},"ja":{"copy":"コピー","copiedList":"リストをコピーしました（{n}件）。","sameFile":"このファイルは保存済みです：新しい変化はありません。","acTitle":"アカウント（任意）","acSub":"パスワードで履歴を守れます。データはこの端末の中だけに残ります。","acName":"名前またはニックネーム","acPass":"パスワード","acPass2":"パスワード（確認）","acCreate":"アカウントを作成","acWarn":"履歴は暗号化して保存されます。パスワードを忘れると復元できません：あなた以外は誰も知りません。","acLockedSub":"履歴は暗号化されています。パスワードを入力してください。","acHello":"こんにちは、{n}さん","acEnter":"ログイン","acForgot":"忘れた：最初からやり直す","acSure":"もう一度タップするとすべて消去","acOpenSub":"ログイン中。履歴はこの端末に暗号化して保存されます。","acOut":"ログアウト","acRemove":"パスワードを解除","acNeedName":"名前を入力してください。","acShort":"6文字以上にしてください。","acMismatch":"パスワードが一致しません。","acMade":"アカウントを作成しました。履歴は暗号化されています。","acWelcome":"ログインしました。","acWrong":"パスワードが違います。","acBye":"ログアウトしました。履歴は暗号化されたままです。","acRemoved":"パスワードを解除しました。この端末の履歴は暗号化されていません。","acReset":"すべて消去しました。最初から始められます。","acStore":"このブラウザに保存できませんでした。","needUnlock":"先にパスワードでログインしてください。","encLoaded":"暗号化バックアップを読み込みました。パスワードを入力してください。","lockedHist":"履歴は保護されています。ログインして表示します。"},"ko":{"copy":"복사","copiedList":"목록을 복사했어요 ({n}개).","sameFile":"이미 저장된 파일이에요: 새로운 변화가 없어요.","acTitle":"계정 (선택)","acSub":"비밀번호로 기록을 보호하세요. 모든 데이터는 이 기기에만 남아요.","acName":"이름 또는 닉네임","acPass":"비밀번호","acPass2":"비밀번호 다시 입력","acCreate":"계정 만들기","acWarn":"기록은 암호화되어 저장돼요. 비밀번호를 잊으면 복구할 수 없어요: 다른 누구도 알지 못해요.","acLockedSub":"기록이 암호화되어 있어요. 비밀번호를 입력하세요.","acHello":"안녕하세요, {n}님","acEnter":"로그인","acForgot":"잊어버렸어요: 처음부터","acSure":"한 번 더 누르면 모두 삭제돼요","acOpenSub":"로그인됨. 기록은 이 기기에 암호화되어 저장돼요.","acOut":"로그아웃","acRemove":"비밀번호 해제","acNeedName":"이름을 입력하세요.","acShort":"6자 이상 입력하세요.","acMismatch":"비밀번호가 일치하지 않아요.","acMade":"계정이 만들어졌어요. 기록이 암호화되었어요.","acWelcome":"로그인했어요.","acWrong":"비밀번호가 틀렸어요.","acBye":"로그아웃했어요. 기록은 계속 암호화되어 있어요.","acRemoved":"비밀번호를 해제했어요. 이 기기의 기록은 더 이상 암호화되지 않아요.","acReset":"모두 삭제했어요. 처음부터 시작할 수 있어요.","acStore":"이 브라우저에 저장할 수 없어요.","needUnlock":"먼저 비밀번호로 로그인하세요.","encLoaded":"암호화된 백업을 불러왔어요. 비밀번호를 입력하세요.","lockedHist":"기록이 보호되어 있어요. 로그인해서 보세요."},"id":{"copy":"Salin","copiedList":"Daftar disalin ({n} akun).","sameFile":"File ini sudah disimpan: tidak ada yang baru.","acTitle":"Akun (opsional)","acSub":"Lindungi riwayatmu dengan kata sandi. Semua tetap hanya di perangkatmu.","acName":"Nama atau nama panggilan","acPass":"Kata sandi","acPass2":"Ulangi kata sandi","acCreate":"Buat akun","acWarn":"Riwayatmu disimpan terenkripsi. Jika lupa kata sandi, tidak bisa dipulihkan: tidak ada orang lain yang punya.","acLockedSub":"Riwayatmu terenkripsi. Ketik kata sandi untuk melihatnya.","acHello":"Hai, {n}","acEnter":"Masuk","acForgot":"Lupa: mulai dari awal","acSure":"Ketuk lagi untuk menghapus semua","acOpenSub":"Sudah masuk. Riwayat disimpan terenkripsi di perangkat ini.","acOut":"Keluar","acRemove":"Hapus kata sandi","acNeedName":"Ketik nama atau nama panggilan.","acShort":"Minimal 6 karakter.","acMismatch":"Kata sandi tidak cocok.","acMade":"Akun dibuat. Riwayatmu kini terenkripsi.","acWelcome":"Sudah masuk.","acWrong":"Kata sandi salah.","acBye":"Sudah keluar. Riwayat tetap terenkripsi.","acRemoved":"Kata sandi dihapus. Riwayat di perangkat ini tidak lagi terenkripsi.","acReset":"Semua dihapus. Kamu bisa mulai dari awal.","acStore":"Tidak bisa menyimpan di browser ini.","needUnlock":"Masuk dulu dengan kata sandimu.","encLoaded":"Cadangan terenkripsi dimuat. Ketik kata sandinya untuk membuka.","lockedHist":"Riwayat dilindungi. Masuk untuk melihatnya."}};
+for(const[c,x]of Object.entries(EXTRA3))Object.assign(I18N[c],x);
+
 for(const[c,x]of Object.entries(EXTRA)){const{a1w,...rest}=x;Object.assign(I18N[c],rest);I18N[c].a1+=a1w}
 const AUTHOR='SamuTecYT',REPO='https://github.com/SamuTecYT/follower-diff';
 const RTL=new Set(['ar']);
@@ -444,11 +499,36 @@ const MAX_FILE=200*1024*1024, MAX_ENTRY=50*1024*1024;
 const $=id=>document.getElementById(id);
 // Only valid Instagram usernames are accepted: blocks malicious code hidden in a file
 const VALID=/^[a-z0-9._]{1,30}$/;
+const sanitize=raw=>(Array.isArray(raw)?raw:[]).filter(s=>s&&Number.isFinite(s.t)).map(s=>({t:s.t,followers:clean(s.followers),following:clean(s.following)})).sort((a,b)=>a.t-b.t);
 const clean=arr=>[...new Set((Array.isArray(arr)?arr:[]).map(x=>String(x).toLowerCase()).filter(x=>VALID.test(x)))].sort();
 
 let mem=null,demo=false;
-const load=()=>{if(mem)return mem.slice();try{return JSON.parse(localStorage.getItem(KEY))||[]}catch{return[]}};
-const save=h=>{if(demo){mem=h.slice();return}try{localStorage.setItem(KEY,JSON.stringify(h));mem=null}catch{mem=h.slice()}};
+// Optional account: the history is encrypted on this device (AES-GCM, key from the password with PBKDF2).
+// No server: the password and the history never leave the device. The key lives only in memory.
+const LOCK='ig-seguidores-lock';
+const readLock=()=>{try{const o=JSON.parse(localStorage.getItem(LOCK));return isLock(o)?o:null}catch{return null}};
+const isLock=o=>!!o&&o.v===1&&typeof o.salt==='string'&&typeof o.iv==='string'&&typeof o.ct==='string';
+let acct=readLock(),key=null,chain=Promise.resolve();
+const locked=()=>!!acct&&!key&&!demo;
+const load=()=>{if(mem)return mem.slice();if(acct)return[];try{return JSON.parse(localStorage.getItem(KEY))||[]}catch{return[]}};
+const save=h=>{if(demo){mem=h.slice();return}
+  if(acct){if(!key)return;mem=h.slice();const data=mem.slice();chain=chain.then(()=>seal(data)).catch(()=>say('acStore','red'));return}
+  try{localStorage.setItem(KEY,JSON.stringify(h));mem=null}catch{mem=h.slice()}};
+const te=new TextEncoder(),b64=u=>btoa(String.fromCharCode(...new Uint8Array(u))),unb64=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+async function derive(pass,salt){
+  const base=await crypto.subtle.importKey('raw',te.encode(pass),'PBKDF2',false,['deriveKey']);
+  return crypto.subtle.deriveKey({name:'PBKDF2',salt,iterations:600000,hash:'SHA-256'},base,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);
+}
+async function seal(h){
+  const iv=crypto.getRandomValues(new Uint8Array(12));
+  const ct=await crypto.subtle.encrypt({name:'AES-GCM',iv},key,te.encode(JSON.stringify(h)));
+  acct={...acct,iv:b64(iv),ct:b64(ct)};localStorage.setItem(LOCK,JSON.stringify(acct));
+}
+async function unseal(pass){
+  const k=await derive(pass,unb64(acct.salt));
+  const pt=await crypto.subtle.decrypt({name:'AES-GCM',iv:unb64(acct.iv)},k,unb64(acct.ct));
+  return{k,h:sanitize(JSON.parse(new TextDecoder().decode(pt)))};
+}
 const TAG={green:'ok',red:'warn',blue:'wait'};
 function say(k,c='blue',v){const m=$('msg');m.textContent='';if(!k)return;const s=document.createElement('span');s.className='tag t-'+c;s.textContent=t(TAG[c]);m.append(s,' '+t(k,v))}
 const fmt=ts=>new Date(ts).toLocaleString(L,{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
@@ -487,7 +567,8 @@ function users(text){
 
 async function handle(files){
   if(!files.length)return;
-  if(demo){demo=false;mem=null;$('demoBar').classList.add('hidden')}
+  if(locked()){say('needUnlock','red');$('aPassIn').focus();return}
+  if(demo){demo=false;mem=acct&&key?mem:null;$('demoBar').classList.add('hidden')}
   const drop=$('drop');drop.classList.add('busy');say('reading');
   try{
     if(typeof DecompressionStream==='undefined'){say('old','red');return}
@@ -504,7 +585,9 @@ async function handle(files){
       else if(/^following\./.test(base))users(txt).forEach(x=>ing.add(x));
     }
     if(!fol.size){say('noFol','red');return}
-    const h=load();h.push({t:Date.now(),followers:[...fol].sort(),following:[...ing].sort()});save(h);
+    const h=load(),snap={t:Date.now(),followers:[...fol].sort(),following:[...ing].sort()},last=h[h.length-1];
+    if(last&&last.followers.join()===snap.followers.join()&&last.following.join()===snap.following.join()){render();say('sameFile','blue');return}
+    h.push(snap);save(h);
     render();say('saved','green',{n:nf(fol.size)});
     $('results').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
   }catch{say('readErr','red')}
@@ -538,11 +621,18 @@ function search(){
   }
 }
 
+function renderAcct(){
+  const lk=locked(),open=!!acct&&!!key;
+  $('aNone').classList.toggle('hidden',!!acct||demo);$('aLock').classList.toggle('hidden',!lk);$('aIn').classList.toggle('hidden',!open);
+  $('acct').classList.toggle('hidden',demo);
+  if(acct){const n=acct.name||'';$('aHello').textContent=t('acHello',{n});$('aHi').textContent=t('acHello',{n});$('aUser').value=n}
+}
 function render(){
+  renderAcct();
   const h=load(),hist=$('hist');
   hist.replaceChildren(...(h.length?h.map((s,i)=>{const li=document.createElement('li'),d=document.createElement('div'),sp=document.createElement('span'),b=document.createElement('button');
       sp.textContent=' · '+fmt(s.t);d.append(t('folN',{n:nf(s.followers.length)}),sp);b.type='button';b.className='btn ghost small';b.textContent=t('del');b.dataset.del=i;b.setAttribute('aria-label',t('del')+' '+fmt(s.t));li.append(d,b);return li}).reverse()
-    :[Object.assign(document.createElement('li'),{className:'empty',textContent:t('emptyHist')})]));
+    :[Object.assign(document.createElement('li'),{className:'empty',textContent:t(locked()?'lockedHist':'emptyHist')})]));
   if(!h.length){$('results').classList.add('hidden');return}
   const cur=h[h.length-1],prev=h[h.length-2],c=new Set(cur.followers),p=prev?new Set(prev.followers):null;
   const nw=p?cur.followers.filter(x=>!p.has(x)):[],lost=p?prev.followers.filter(x=>!c.has(x)):[];
@@ -568,7 +658,7 @@ function render(){
 
 // Example data, only with #demo in the address (never saved)
 function loadDemo(){
-  demo=true;const now=Date.now(),base=['lucia.mtz','dani_photo','marco.rossi','sakura.t','omar.k','ines_reads','tom.builds','yuki.cafe','leo_runs','nadia.art'];
+  demo=true;key=null;const now=Date.now(),base=['lucia.mtz','dani_photo','marco.rossi','sakura.t','omar.k','ines_reads','tom.builds','yuki.cafe','leo_runs','nadia.art'];
   mem=[{t:now-6*864e5,followers:[...base,'paulo.surf','kim.studio'].sort(),following:['lucia.mtz','marco.rossi','tom.builds','brand.store','chef.ana']},
        {t:now,followers:[...base,'kim.studio','aria.draws','ben_travel','mei.ling'].sort(),following:['lucia.mtz','marco.rossi','tom.builds','brand.store','chef.ana']}];
   $('demoBar').classList.remove('hidden');
@@ -587,16 +677,46 @@ $('hist').addEventListener('click',ev=>{const b=ev.target,i=b.dataset.del;if(i==
   const h=load();h.splice(+i,1);save(h);render()});
 // Embedded pages can't download files: there the backup goes to the clipboard
 const embedded=(()=>{try{return window.top!==window}catch{return true}})();
-$('exp').addEventListener('click',async()=>{const h=load();if(!h.length||demo){say('nothing','red');return}
-  const txt=JSON.stringify(h);
+$('exp').addEventListener('click',async()=>{const h=load();if((!h.length&&!acct)||demo){say('nothing','red');return}
+  await chain;const txt=JSON.stringify(acct?{v:1,name:acct.name,salt:acct.salt,iv:acct.iv,ct:acct.ct}:h);
   if(embedded){try{await navigator.clipboard.writeText(txt);say('copied','green')}catch{say('copyFail','red')}return}
-  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:'application/json'}));a.download='follower-history.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)});
+  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([txt],{type:'application/json'}));a.download=acct?'follower-history-locked.json':'follower-history.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)});
 $('impLabel').addEventListener('keydown',ev=>{if(ev.key==='Enter'||ev.key===' '){ev.preventDefault();$('imp').click()}});
 $('imp').addEventListener('change',async ev=>{
-  try{const raw=JSON.parse(await ev.target.files[0].text());if(!Array.isArray(raw))throw 0;
-    const h=raw.filter(s=>s&&Number.isFinite(s.t)).map(s=>({t:s.t,followers:clean(s.followers),following:clean(s.following)})).sort((a,b)=>a.t-b.t);
+  try{const raw=JSON.parse(await ev.target.files[0].text());
+    // Encrypted backup from an account: keep it locked until the password is typed
+    if(isLock(raw)){acct={v:1,name:String(raw.name||'').slice(0,40),salt:raw.salt,iv:raw.iv,ct:raw.ct};key=null;mem=null;demo=false;$('demoBar').classList.add('hidden');
+      localStorage.setItem(LOCK,JSON.stringify(acct));try{localStorage.removeItem(KEY)}catch{}render();say('encLoaded','blue');$('aPassIn').focus();return}
+    if(locked()){say('needUnlock','red');return}
+    if(!Array.isArray(raw))throw 0;
+    const h=sanitize(raw);
     if(!h.length)throw 0;demo=false;$('demoBar').classList.add('hidden');save(h);render();say('loaded','green')}
   catch{say('bad','red')}finally{ev.target.value=''}});
+// Account events (forms never submit anywhere: handled here)
+$('aOpen').addEventListener('click',()=>{const f=$('aNew'),o=f.classList.toggle('hidden');$('aOpen').setAttribute('aria-expanded',String(!o));if(!o)$('aName').focus()});
+$('aNew').addEventListener('submit',async ev=>{ev.preventDefault();
+  const name=$('aName').value.trim().slice(0,40),p1=$('aPass').value,p2=$('aPass2').value;
+  if(!name){say('acNeedName','red');$('aName').focus();return}
+  if(p1.length<6){say('acShort','red');$('aPass').focus();return}
+  if(p1!==p2){say('acMismatch','red');$('aPass2').focus();return}
+  const b=ev.submitter||ev.target.querySelector('button');b.disabled=true;
+  try{const salt=crypto.getRandomValues(new Uint8Array(16)),h=load();key=await derive(p1,salt);acct={v:1,name,salt:b64(salt)};await seal(h);mem=h;
+    try{localStorage.removeItem(KEY)}catch{}ev.target.reset();render();say('acMade','green')}
+  catch{acct=null;key=null;say('acStore','red')}finally{b.disabled=false}});
+$('aLock').addEventListener('submit',async ev=>{ev.preventDefault();const b=ev.submitter,pi=$('aPassIn');if(!pi.value)return;if(b)b.disabled=true;
+  try{const r=await unseal(pi.value);key=r.k;mem=r.h;pi.value='';render();say('acWelcome','green')}
+  catch{say('acWrong','red');pi.select()}finally{if(b)b.disabled=false}});
+$('aOut').addEventListener('click',async()=>{await chain;key=null;mem=null;render();say('acBye','blue')});
+$('aRemove').addEventListener('click',async()=>{await chain;const h=load();try{localStorage.setItem(KEY,JSON.stringify(h));localStorage.removeItem(LOCK)}catch{say('acStore','red');return}
+  acct=null;key=null;mem=null;render();say('acRemoved','green')});
+// Forgotten password: there is no way to recover it, so the only way out is a clean start (two taps)
+$('aForgot').addEventListener('click',ev=>{const b=ev.currentTarget;
+  if(!b.dataset.sure){b.dataset.sure=1;b.textContent=t('acSure');setTimeout(()=>{if(b.isConnected){delete b.dataset.sure;b.textContent=t('acForgot')}},4000);return}
+  delete b.dataset.sure;try{localStorage.removeItem(LOCK);localStorage.removeItem(KEY)}catch{}acct=null;key=null;mem=null;render();say('acReset','blue')});
+// Copy a list (only what is shown with the current search)
+document.addEventListener('click',async ev=>{const b=ev.target.closest('.cp');if(!b)return;const s=LISTS[b.dataset.l];if(!s)return;
+  const q=query(),arr=q?s.arr.filter(u=>u.includes(q)):s.arr;if(!arr.length){say('nothing','red');return}
+  try{await navigator.clipboard.writeText(arr.map(u=>'@'+u).join('\n'));say('copiedList','green',{n:nf(arr.length)})}catch{say('copyFail','red')}});
 const sel=$('langSel');
 for(const[code,d]of Object.entries(I18N)){const o=document.createElement('option');o.value=code;o.textContent=d._n;sel.append(o)}
 sel.addEventListener('change',()=>{try{localStorage.setItem(LKEY,sel.value)}catch{}applyLang(sel.value);say('')});
