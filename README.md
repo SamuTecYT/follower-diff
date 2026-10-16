@@ -3,7 +3,7 @@
 <h1 align="center">Follower Diff</h1>
 
 <p align="center"><b>See who followed and who unfollowed you on Instagram.</b><br>
-Private, free, and safe for your account. No login, no password, no bots.</p>
+Private, free, and safe for your account. No Instagram login, no bots, works offline.</p>
 
 <p align="center"><a href="https://samutecyt.github.io/follower-diff/"><b>Open the app</b></a> · <a href="https://github.com/SamuTecYT/follower-diff/releases/latest/download/Follower-Diff.html"><b>Download for PC / Mac</b></a> · <a href="https://samutecyt.github.io/follower-diff/#demo">Try it with example data</a></p>
 
@@ -41,7 +41,7 @@ Protect your history with a password. No server: everything stays encrypted on y
   1. Tap **Move to another device**. You get `follower-account.json`.
   2. Send it to yourself (WhatsApp, email, AirDrop or Drive). It's encrypted.
   3. On the other device tap **I have an account**, choose the file and type your password.
-- Devices don't sync by themselves: after adding a new Instagram file, repeat the 3 steps.
+- **Important:** devices don't update by themselves. **Every time** you add a new Instagram file and want to see it on your other device, tap **Move to another device** again and load the new file there.
 - If you forget the password it can't be recovered, because no one else has it.
 
 ### What it does
@@ -64,13 +64,13 @@ It uses only Instagram's official **Download your information** feature. The app
 
 ### Privacy and security
 - **Nothing leaves your device.** The page has a strict Content Security Policy that blocks every network connection, so your followers can't be sent anywhere.
-- **No accounts, no servers, no tracking, no cookies, no analytics.**
+- **No servers, no tracking, no cookies, no analytics.** The optional account is not online: it's a password that encrypts your history on your own device (AES-256).
 - Usernames read from the file are checked against Instagram's username rules before they are shown. A tampered file can't inject code.
-- History is stored only in your browser. You can save a backup and load it later.
+- History is stored only in your browser. You can save a backup and load it later (encrypted if you have an account).
 - A single, readable HTML file with no dependencies. You can audit all of it.
 
 ### How to use
-1. Open **https://samutecyt.github.io/follower-diff/** (or download `index.html`) in any modern browser, on a computer or a phone.
+1. Open **https://samutecyt.github.io/follower-diff/** (or the downloaded `Follower-Diff.html`) in any modern browser, on a computer or a phone.
 2. Tap **Request my file from Instagram** and choose: *Export to device* › *Customize information* › only **Followers and following** › Date range **All time** › Format **JSON**.
 3. Wait about **30 seconds**. Instagram's screen doesn't refresh by itself and looks like it's still processing. **Leave that menu and open it again**, and the **Download** button will be there.
 4. Download the `.zip` and drop it into the page **without unzipping it**.
@@ -100,7 +100,7 @@ Protege tu historial con una contraseña. Sin servidor: todo queda cifrado en tu
   1. Pulsa **Pasar a otro aparato**. Se descarga `follower-account.json`.
   2. Envíatelo (WhatsApp, correo, AirDrop o Drive). Va cifrado.
   3. En el otro aparato pulsa **Ya tengo cuenta**, elige el archivo y escribe tu contraseña.
-- Los aparatos no se sincronizan solos: cuando subas un archivo nuevo de Instagram, repite los 3 pasos.
+- **Importante:** los aparatos no se actualizan solos. **Cada vez** que subas un archivo nuevo de Instagram y quieras verlo en tu otro aparato, vuelve a pulsar **Pasar a otro aparato** y carga el archivo nuevo allí.
 - Si olvidas la contraseña no se puede recuperar, porque nadie más la tiene.
 
 ### Qué hace
@@ -123,19 +123,29 @@ Solo usa la función oficial **Descargar tu información** de Instagram. La app 
 
 ### Privacidad y seguridad
 - **Nada sale de tu aparato.** La página bloquea cualquier conexión a internet, así que tus seguidores no pueden enviarse a ningún sitio.
-- **Sin cuentas, sin servidores, sin rastreo, sin cookies.**
+- **Sin servidores, sin rastreo, sin cookies.** La cuenta opcional no está en internet: es una contraseña que cifra tu historial en tu propio aparato (AES-256).
 - Los nombres del archivo se validan antes de mostrarse. Un archivo manipulado no puede meter código.
-- El historial se guarda solo en tu navegador. Puedes guardar una copia y cargarla después.
+- El historial se guarda solo en tu navegador. Puedes guardar una copia y cargarla después (cifrada si tienes cuenta).
 - Es un único archivo HTML, sin dependencias, que cualquiera puede revisar.
 
 ### Cómo usarlo
-1. Abre **https://samutecyt.github.io/follower-diff/** (o descarga `index.html`) en cualquier navegador moderno, en el ordenador o en el móvil.
+1. Abre **https://samutecyt.github.io/follower-diff/** (o el `Follower-Diff.html` descargado) en cualquier navegador moderno, en el ordenador o en el móvil.
 2. Toca **Pedir mi archivo a Instagram** y elige: *Exportar a dispositivo* › *Personalizar información* › solo **Seguidores y seguidos** › Intervalo **Desde el principio** › Formato **JSON**.
 3. Espera unos **30 segundos**. La pantalla de Instagram no se actualiza sola y parece que sigue procesando: **sal de ese menú y vuelve a entrar**, y ya verás el botón **Descargar**.
 4. Descarga el `.zip` y súbelo a la página **sin descomprimirlo**.
 5. Repite cuando cambie tu número de seguidores. Cada archivo se compara con el anterior.
 
+### Idiomas
+Se abre solo en el idioma de tu aparato y puedes cambiarlo cuando quieras desde el selector de arriba:
+English, Español, Português, Français, Deutsch, Italiano, Русский, Türkçe, العربية (de derecha a izquierda), हिन्दी, 中文, 日本語, 한국어, Bahasa Indonesia.
+
 ---
+
+## What's new / Novedades (v2.5)
+- Optional **account** with password, encrypted on your device · **Cuenta** opcional con contraseña, cifrada en tu aparato
+- **I have an account** / **Move to another device** in 3 steps · **Ya tengo cuenta** / **Pasar a otro aparato** en 3 pasos
+- Search, mutual follows, copy lists, dark mode, big-account support · Buscador, mutuos, copiar listas, modo oscuro, cuentas grandes
+- Profiles open in the Instagram app on phones · Los perfiles se abren en la app de Instagram en el móvil
 
 ## For developers
 - `src/app.html`: the source (HTML, CSS, JS and all translations in one file)
