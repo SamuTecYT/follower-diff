@@ -141,7 +141,10 @@ English, Español, Português, Français, Deutsch, Italiano, Русский, Tü
 
 ---
 
-## What's new / Novedades (v2.6)
+## What's new / Novedades (v2.7)
+- Clearer **Step 1** card: request your file **on the web** (takes you straight there) or **in the Instagram app** (no sign-in needed), with a note on why signing in is safe · Tarjeta **Paso 1** más clara: pide tu archivo **desde la web** (te lleva directo) o **desde la app de Instagram** (sin iniciar sesión), con una nota de por qué iniciar sesión es seguro
+
+## v2.6
 - **Light / dark mode button** next to the language selector · Botón de **modo claro / oscuro** junto al idioma
 - On phones, **Open the Instagram app** button (you're already signed in there) plus the exact path to the export · En el móvil, botón **Abrir la app de Instagram** (ya tienes la sesión iniciada) y la ruta exacta para pedir el archivo
 
