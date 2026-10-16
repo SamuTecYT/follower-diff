@@ -38,6 +38,12 @@ Want your history protected? Tap **Create account**: just a nickname and a passw
 **Sign in on another device:** tap **Sign in**, choose your encrypted backup (`follower-history-locked.json`) and type your password.
 If you forget the password it can't be recovered, because no one else has it.
 
+**Use it on your computer and your phone:**
+1. On the computer, tap **Save a backup**. You get `follower-history-locked.json`.
+2. Send it to your phone: AirDrop (iPhone with Mac), email or WhatsApp it to yourself, or put it in iCloud Drive / Google Drive. It's encrypted, so no one can read it without your password.
+3. On the phone, save it in **Files**, open the app and tap **Sign in › Choose my encrypted backup**. Type your password.
+4. Devices don't sync by themselves. After adding a new Instagram file, save a new backup and send it to the other device. It works both ways.
+
 ### What it does
 Instagram lets you download your own data, including your list of followers. Follower Diff takes that file and compares it with the previous one, so you can see:
 
@@ -48,6 +54,7 @@ Instagram lets you download your own data, including your list of followers. Fol
 - **Mutual follows**: everyone you follow who also follows you
 - **Search any user** to see at once if you follow each other, only one way, or not at all. All lists filter as you type
 - Built for **big accounts**: tested with 100,000 followers. Long lists load in pages, so the app stays fast
+- Tap a name to open the profile: **in the Instagram app** on phones, in your default browser on computers
 - **Copy any list** with one tap
 - **Dark mode** that follows your device
 - A **history** of every snapshot, with follower counts and dates
@@ -90,6 +97,12 @@ English, Español, Português, Français, Deutsch, Italiano, Русский, Tü
 **Iniciar sesión en otro aparato:** pulsa **Iniciar sesión**, elige tu copia cifrada (`follower-history-locked.json`) y escribe tu contraseña.
 Si olvidas la contraseña no se puede recuperar, porque nadie más la tiene.
 
+**Úsalo en el ordenador y en el móvil:**
+1. En el ordenador, pulsa **Guardar copia del historial**. Se descarga `follower-history-locked.json`.
+2. Pásalo al móvil: por AirDrop (iPhone con Mac), enviándotelo por correo o WhatsApp, o con iCloud Drive / Google Drive. Va cifrado: sin tu contraseña nadie puede leerlo.
+3. En el móvil, guárdalo en **Archivos**, abre la app y pulsa **Iniciar sesión › Elegir mi copia cifrada**. Escribe tu contraseña.
+4. Los aparatos no se sincronizan solos. Después de subir un archivo nuevo de Instagram, guarda otra copia y pásala al otro aparato. Funciona en los dos sentidos.
+
 ### Qué hace
 Instagram te deja descargar tus propios datos, incluida tu lista de seguidores. Follower Diff compara ese archivo con el anterior y te muestra:
 
@@ -100,6 +113,7 @@ Instagram te deja descargar tus propios datos, incluida tu lista de seguidores. 
 - **Seguidores mutuos**: quién te sigue y tú también le sigues
 - **Busca cualquier usuario** y ve al momento si os seguís, si solo te sigue uno de los dos o ninguno. Todas las listas se filtran mientras escribes
 - Pensado para **cuentas grandes**: probado con 100.000 seguidores. Las listas largas se cargan por partes para que todo vaya rápido
+- Toca un nombre para abrir su perfil: **en la app de Instagram** en el móvil y en tu navegador predeterminado en el ordenador
 - **Copia cualquier lista** con un toque
 - **Modo oscuro** automático según tu aparato
 - Un **historial** con cada registro, su fecha y el número de seguidores
