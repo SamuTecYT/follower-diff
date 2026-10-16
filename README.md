@@ -34,15 +34,15 @@ Private, free, and safe for your account. No login, no password, no bots.</p>
 **On a phone (iPhone or Android):** open **[the app](https://samutecyt.github.io/follower-diff/)** in Safari or Chrome, tap **Share › Add to Home Screen**. It gets its own icon, like an app.
 
 ### Optional account
-Want your history protected? Tap **Create account**: just a nickname and a password. Your history is then **encrypted on your device** (AES-256). There is no server: your password and your followers never leave your phone or computer. It's 100% optional, and the backup you save is encrypted too, so you can move it to another device and open it with the same password.
-**Sign in on another device:** tap **Sign in**, choose your encrypted backup (`follower-history-locked.json`) and type your password.
-If you forget the password it can't be recovered, because no one else has it.
+Protect your history with a password. No server: everything stays encrypted on your device. 100% optional.
 
-**Use it on your computer and your phone:**
-1. On the computer, tap **Save a backup**. You get `follower-history-locked.json`.
-2. Send it to your phone: AirDrop (iPhone with Mac), email or WhatsApp it to yourself, or put it in iCloud Drive / Google Drive. It's encrypted, so no one can read it without your password.
-3. On the phone, save it in **Files**, open the app and tap **Sign in › Choose my encrypted backup**. Type your password.
-4. Devices don't sync by themselves. After adding a new Instagram file, save a new backup and send it to the other device. It works both ways.
+- **Create it:** tap **Create account**, type a nickname and a password. Done.
+- **Use it on another device (3 steps):**
+  1. Tap **Move to another device**. You get `follower-account.json`.
+  2. Send it to yourself (WhatsApp, email, AirDrop or Drive). It's encrypted.
+  3. On the other device tap **I have an account**, choose the file and type your password.
+- Devices don't sync by themselves: after adding a new Instagram file, repeat the 3 steps.
+- If you forget the password it can't be recovered, because no one else has it.
 
 ### What it does
 Instagram lets you download your own data, including your list of followers. Follower Diff takes that file and compares it with the previous one, so you can see:
@@ -93,15 +93,15 @@ English, Español, Português, Français, Deutsch, Italiano, Русский, Tü
 **En el móvil (iPhone o Android):** abre **[la app](https://samutecyt.github.io/follower-diff/)** en Safari o Chrome y pulsa **Compartir › Añadir a pantalla de inicio**. Tendrá su propio icono, como una app.
 
 ### Cuenta opcional
-¿Quieres proteger tu historial? Pulsa **Crear cuenta**: solo un apodo y una contraseña. Tu historial se guarda **cifrado en tu aparato** (AES-256). No hay servidor: tu contraseña y tus seguidores nunca salen de tu móvil u ordenador. Es 100% opcional, y la copia que guardes también va cifrada, así que puedes pasarla a otro aparato y abrirla con la misma contraseña.
-**Iniciar sesión en otro aparato:** pulsa **Iniciar sesión**, elige tu copia cifrada (`follower-history-locked.json`) y escribe tu contraseña.
-Si olvidas la contraseña no se puede recuperar, porque nadie más la tiene.
+Protege tu historial con una contraseña. Sin servidor: todo queda cifrado en tu aparato. 100 % opcional.
 
-**Úsalo en el ordenador y en el móvil:**
-1. En el ordenador, pulsa **Guardar copia del historial**. Se descarga `follower-history-locked.json`.
-2. Pásalo al móvil: por AirDrop (iPhone con Mac), enviándotelo por correo o WhatsApp, o con iCloud Drive / Google Drive. Va cifrado: sin tu contraseña nadie puede leerlo.
-3. En el móvil, guárdalo en **Archivos**, abre la app y pulsa **Iniciar sesión › Elegir mi copia cifrada**. Escribe tu contraseña.
-4. Los aparatos no se sincronizan solos. Después de subir un archivo nuevo de Instagram, guarda otra copia y pásala al otro aparato. Funciona en los dos sentidos.
+- **Crearla:** pulsa **Crear cuenta**, escribe un apodo y una contraseña. Listo.
+- **Usarla en otro aparato (3 pasos):**
+  1. Pulsa **Pasar a otro aparato**. Se descarga `follower-account.json`.
+  2. Envíatelo (WhatsApp, correo, AirDrop o Drive). Va cifrado.
+  3. En el otro aparato pulsa **Ya tengo cuenta**, elige el archivo y escribe tu contraseña.
+- Los aparatos no se sincronizan solos: cuando subas un archivo nuevo de Instagram, repite los 3 pasos.
+- Si olvidas la contraseña no se puede recuperar, porque nadie más la tiene.
 
 ### Qué hace
 Instagram te deja descargar tus propios datos, incluida tu lista de seguidores. Follower Diff compara ese archivo con el anterior y te muestra:
