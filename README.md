@@ -141,7 +141,11 @@ English, Español, Português, Français, Deutsch, Italiano, Русский, Tü
 
 ---
 
-## What's new / Novedades (v2.5)
+## What's new / Novedades (v2.6)
+- **Light / dark mode button** next to the language selector · Botón de **modo claro / oscuro** junto al idioma
+- On phones, **Open the Instagram app** button (you're already signed in there) plus the exact path to the export · En el móvil, botón **Abrir la app de Instagram** (ya tienes la sesión iniciada) y la ruta exacta para pedir el archivo
+
+## v2.5
 - Optional **account** with password, encrypted on your device · **Cuenta** opcional con contraseña, cifrada en tu aparato
 - **I have an account** / **Move to another device** in 3 steps · **Ya tengo cuenta** / **Pasar a otro aparato** en 3 pasos
 - Search, mutual follows, copy lists, dark mode, big-account support · Buscador, mutuos, copiar listas, modo oscuro, cuentas grandes
