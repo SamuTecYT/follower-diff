@@ -141,7 +141,10 @@ English, Español, Português, Français, Deutsch, Italiano, Русский, Tü
 
 ---
 
-## What's new / Novedades (v2.8)
+## What's new / Novedades (v2.9)
+- **One step fewer**: no need to change the format anymore; the app reads both HTML (Instagram's default) and JSON. Only 2 settings to change: "Followers and following" and "All time" · **Un paso menos**: ya no hace falta cambiar el formato; el programa lee HTML (lo que trae Instagram por defecto) y JSON. Solo cambias 2 cosas: «Seguidores y seguidos» y «Desde el principio»
+
+## v2.8
 - **"What to tap" list** right under the request buttons: the 3 exact steps on Instagram's export screen, always visible (Instagram doesn't allow any link to pre-tick the options) · Lista **«Qué tocar»** justo debajo de los botones: los 3 pasos exactos en la pantalla de exportación de Instagram, siempre a la vista (Instagram no permite que un enlace deje las opciones marcadas)
 
 ## v2.7
