@@ -71,8 +71,12 @@ It uses only Instagram's official **Download your information** feature. The app
 
 ### How to use
 1. Open **https://samutecyt.github.io/follower-diff/** (or the downloaded `Follower-Diff.html`) in any modern browser, on a computer or a phone.
-2. Tap **Request my file from Instagram** and choose: *Export to device* › *Customize information* › only **Followers and following** › Date range **All time** › Format **JSON**.
-3. Wait about **30 seconds**. Instagram's screen doesn't refresh by itself and looks like it's still processing. **Leave that menu and open it again**, and the **Download** button will be there.
+2. Request your file, whichever way you prefer:
+   - **On the web:** tap **Request my file from Instagram**. It opens the export screen directly.
+   - **In the Instagram app** (no sign-in needed): Profile › ≡ › Accounts Center › Your information and permissions › Export your information.
+
+   Then: **Create export** › your account › **Export to device** › *Customize information*: only **Followers and following** › Date range: **All time** › **Start export**. Leave everything else as it is (HTML or JSON both work).
+3. Wait about **30 seconds**. The screen doesn't refresh by itself: close **Export your information**, open it again and tap **Download**.
 4. Download the `.zip` and drop it into the page **without unzipping it**.
 5. Repeat whenever your follower count changes. Each new file is compared with the previous one.
 
@@ -130,8 +134,12 @@ Solo usa la función oficial **Descargar tu información** de Instagram. La app 
 
 ### Cómo usarlo
 1. Abre **https://samutecyt.github.io/follower-diff/** (o el `Follower-Diff.html` descargado) en cualquier navegador moderno, en el ordenador o en el móvil.
-2. Toca **Pedir mi archivo a Instagram** y elige: *Exportar a dispositivo* › *Personalizar información* › solo **Seguidores y seguidos** › Intervalo **Desde el principio** › Formato **JSON**.
-3. Espera unos **30 segundos**. La pantalla de Instagram no se actualiza sola y parece que sigue procesando: **sal de ese menú y vuelve a entrar**, y ya verás el botón **Descargar**.
+2. Pide tu archivo como prefieras:
+   - **En la web:** toca **Pedir mi archivo a Instagram**. Te lleva directo a la pantalla de exportación.
+   - **En la app de Instagram** (sin iniciar sesión): Perfil › ≡ › Centro de cuentas › Tu información y permisos › Exportar tu información.
+
+   Después: **Crear exportación** › tu cuenta › **Exportar a dispositivo** › *Personalizar información*: solo **Seguidores y seguidos** › Intervalo de fechas: **Desde el principio** › **Iniciar exportación**. Lo demás déjalo como esté (sirve HTML o JSON).
+3. Espera unos **30 segundos**. La pantalla no se actualiza sola: cierra **Exportar tu información**, vuelve a entrar y toca **Descargar**.
 4. Descarga el `.zip` y súbelo a la página **sin descomprimirlo**.
 5. Repite cuando cambie tu número de seguidores. Cada archivo se compara con el anterior.
 
@@ -141,7 +149,13 @@ English, Español, Português, Français, Deutsch, Italiano, Русский, Tü
 
 ---
 
-## What's new / Novedades (v2.9)
+## What's new / Novedades (v3.0)
+- **One clear guide in 3 steps** (request · download · upload) instead of two separate lists · **Una sola guía clara en 3 pasos** (pedir · descargar · subir) en lugar de dos listas separadas
+- **On the web / In the app tabs**, each with its own step-by-step, now visible on computers too; phones open on "In the app" · **Pestañas «En la web» / «En la app»**, cada una con su paso a paso, ahora también visibles en el ordenador; en el móvil se abre en «En la app»
+- The 2 settings you must change are marked **Change this** · Las 2 opciones que hay que cambiar llevan la marca **Cambia esto**
+- Step 2 names the exact screen and button; tidier phone header; version shown in the footer; arrows mirrored in Arabic · El paso 2 nombra la pantalla y el botón exactos; cabecera del móvil más ordenada; versión visible al pie; flechas invertidas en árabe
+
+## v2.9
 - **One step fewer**: no need to change the format anymore; the app reads both HTML (Instagram's default) and JSON. Only 2 settings to change: "Followers and following" and "All time" · **Un paso menos**: ya no hace falta cambiar el formato; el programa lee HTML (lo que trae Instagram por defecto) y JSON. Solo cambias 2 cosas: «Seguidores y seguidos» y «Desde el principio»
 
 ## v2.8
