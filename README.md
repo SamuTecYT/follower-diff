@@ -76,7 +76,7 @@ It uses only Instagram's official **Download your information** feature. The app
    - **In the Instagram app** (no sign-in needed): Profile › ≡ › Accounts Center › Your information and permissions › Export your information.
 
    Then: **Create export** › your account › **Export to device** › *Customize information*: only **Followers and following** (in the *Connections* section) › Date range: **All time** › **Start export**. Leave everything else as it is: the format doesn't matter (HTML or JSON both work).
-3. Wait about **30 seconds**. The screen doesn't refresh by itself: close **Export your information**, open it again and tap **Download**.
+3. Wait until it's ready: it usually takes about **30 seconds**, but sometimes Instagram takes longer (minutes or hours). That's normal, don't request it again. The screen doesn't refresh by itself: close **Export your information**, open it again and tap **Download**.
 4. Download the `.zip` and drop it into the page **without unzipping it**.
 5. Repeat whenever your follower count changes. Each new file is compared with the previous one.
 
@@ -139,7 +139,7 @@ Solo usa la función oficial **Descargar tu información** de Instagram. La app 
    - **En la app de Instagram** (sin iniciar sesión): Perfil › ≡ › Centro de cuentas › Tu información y permisos › Exportar tu información.
 
    Después: **Crear exportación** › tu cuenta › **Exportar a dispositivo** › *Personalizar información*: solo **Seguidores y seguidos** (en el apartado *Conexiones*) › Intervalo de fechas: **Desde el principio** › **Iniciar exportación**. Lo demás déjalo como esté: el formato da igual (sirve HTML o JSON).
-3. Espera unos **30 segundos**. La pantalla no se actualiza sola: cierra **Exportar tu información**, vuelve a entrar y toca **Descargar**.
+3. Espera a que esté listo: suele tardar unos **30 segundos**, pero a veces Instagram tarda más (minutos u horas). Es normal, no lo pidas otra vez. La pantalla no se actualiza sola: cierra **Exportar tu información**, vuelve a entrar y toca **Descargar**.
 4. Descarga el `.zip` y súbelo a la página **sin descomprimirlo**.
 5. Repite cuando cambie tu número de seguidores. Cada archivo se compara con el anterior.
 
