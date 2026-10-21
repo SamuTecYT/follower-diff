@@ -103,7 +103,7 @@ h2.fs-h{font:600 18px/1.3 var(--sans);letter-spacing:0;margin:0;color:var(--ink-
 .sub li.chg::before{color:var(--yellow);font-weight:700}
 .sub li:first-child{border-radius:var(--r-sm) var(--r-sm) 0 0}.sub li:last-child{border-radius:0 0 var(--r-sm) var(--r-sm)}
 .ui{display:inline-grid;place-items:center;width:24px;height:22px;margin-inline:2px;vertical-align:-5px;border:1px solid var(--line-strong);border-radius:4px;background:var(--card);color:var(--ink-strong)}
-.pip{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start;padding:16px;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-sm)}
+.pip{justify-self:stretch;display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start;padding:16px;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-sm)}
 .pip video{display:block;width:96px;height:120px;object-fit:contain;object-position:center top;background:transparent}
 .pip-t{display:grid;gap:4px;justify-items:start;min-width:0}
 .pip-t b{color:var(--ink-strong)}
@@ -251,18 +251,6 @@ footer .ver{font:500 11px var(--mono);letter-spacing:.04em}
             <button type="button" role="tab" id="tabWeb" aria-controls="pWeb" aria-selected="true" ><span class="seg-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z"/></svg><span data-t="tWeb"></span></span></button>
             <button type="button" role="tab" id="tabApp" aria-controls="pApp" aria-selected="false" tabindex="-1" ><span class="seg-i"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18.5h2"/></svg><span data-t="tApp"></span></span></button>
           </div>
-          <div class="pip" id="pip" hidden>
-            <video id="pipV" muted playsinline loop aria-hidden="true" tabindex="-1"></video>
-            <div class="pip-t">
-              <b data-t="gTitle"></b>
-              <p data-t="gText"></p>
-            </div>
-            <fieldset class="shape"><legend data-t="shLabel"></legend><div class="shape-o"><label><input type="radio" name="pipShape" value="tall"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/></svg><span data-t="shTall"></span></label><label><input type="radio" name="pipShape" value="square"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/></svg><span data-t="shSquare"></span></label><label><input type="radio" name="pipShape" value="wide"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="7" width="19" height="10" rx="2"/></svg><span data-t="shWide"></span></label></div></fieldset>
-            <div class="pip-a">
-              <button type="button" class="btn ghost" id="pipBtn" disabled><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><rect x="12" y="11" width="7" height="6" rx="1" fill="currentColor" stroke="none"/></svg><span id="pipL" data-t="gPrep"></span></button>
-              <p class="pip-s" id="pipS" role="status" aria-live="polite"></p>
-            </div>
-          </div>
           <div class="pane" id="pWeb" role="tabpanel" aria-labelledby="tabWeb" tabindex="0">
             <p class="pane-p" data-t="webP"></p>
             <a class="btn" href="https://accountscenter.instagram.com/info_and_permissions/dyi/" target="_blank" rel="noopener noreferrer"><span data-t="req"></span><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
@@ -272,6 +260,18 @@ footer .ver{font:500 11px var(--mono);letter-spacing:.04em}
           </div>
           <div class="pane" id="pApp" role="tabpanel" aria-labelledby="tabApp" tabindex="0" hidden>
             <p class="pane-p"><span data-t="appHint"></span> <span class="only-mouse" data-t="appDesk"></span></p>
+            <div class="pip" id="pip" hidden>
+              <video id="pipV" muted playsinline loop aria-hidden="true" tabindex="-1"></video>
+              <div class="pip-t">
+                <b data-t="gTitle"></b>
+                <p data-t="gText"></p>
+              </div>
+              <fieldset class="shape"><legend data-t="shLabel"></legend><div class="shape-o"><label><input type="radio" name="pipShape" value="tall"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="3" width="10" height="18" rx="2"/></svg><span data-t="shTall"></span></label><label><input type="radio" name="pipShape" value="square"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="2"/></svg><span data-t="shSquare"></span></label><label><input type="radio" name="pipShape" value="wide"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="7" width="19" height="10" rx="2"/></svg><span data-t="shWide"></span></label></div></fieldset>
+              <div class="pip-a">
+                <button type="button" class="btn ghost" id="pipBtn" disabled><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><rect x="12" y="11" width="7" height="6" rx="1" fill="currentColor" stroke="none"/></svg><span id="pipL" data-t="gPrep"></span></button>
+                <p class="pip-s" id="pipS" role="status" aria-live="polite"></p>
+              </div>
+            </div>
             <a class="btn only-touch" href="instagram://app"><span data-t="igApp"></span><svg class="ico" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
             <ol class="sub" data-th="stApp"></ol>
             <p class="pane-p" data-t="rest"></p>
@@ -693,7 +693,12 @@ async function readZip(buf){
     if(!/(followers|following)[^/]*\.(json|html)$/i.test(name)||usize>MAX_ENTRY)continue;
     const s=off+30+v.getUint16(off+26,true)+v.getUint16(off+28,true),data=u8.subarray(s,s+csize);
     if(method===0)out[name]=td.decode(data);
-    else if(method===8)out[name]=await new Response(new Blob([data]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).text();
+    else if(method===8){
+      // The size written in the zip can lie: stop as soon as the real output passes the limit (zip bomb)
+      const rd=new Blob([data]).stream().pipeThrough(new DecompressionStream('deflate-raw')).getReader(),parts=[];let got=0;
+      for(;;){const{done,value}=await rd.read();if(done)break;got+=value.length;if(got>MAX_ENTRY){rd.cancel();throw new Error('zip')}parts.push(value)}
+      out[name]=await new Blob(parts).text();
+    }
   }
   return out;
 }
@@ -751,11 +756,10 @@ const PIP_OK=TOUCH&&'MediaRecorder' in window&&!!HTMLCanvasElement.prototype.cap
 let pipKey='',pipURL='',pipT=0,pipRun=0;
 const SHAPES={tall:[720,1280],square:[960,960],wide:[1280,720]},SHAPE_KEY='ig-seguidores-pipshape';
 function pipShape(){try{const v=localStorage.getItem(SHAPE_KEY);if(SHAPES[v])return v}catch{}return 'square'}
-const isApp=()=>$('tabApp').getAttribute('aria-selected')==='true';
 // concise: steps that only move you around keep their key words (bold parts); the 2 steps to change stay complete
 function guideItems(concise){
   const box=document.createElement('div'),out=[];
-  box.innerHTML=t(isApp()?'stApp':'stWeb'); // static developer strings
+  box.innerHTML=t('stApp'); // static developer strings
   for(const li of box.querySelectorAll('li')){
     const tag=li.querySelector('.tag'),lab=tag?tag.textContent:'',chg=li.classList.contains('chg');if(tag)tag.remove();
     const keys=[...li.querySelectorAll('b,.ui')].map(x=>x.textContent.trim()).filter(Boolean);
@@ -776,7 +780,7 @@ function drawGuide(shape){
   const [W,H]=SHAPES[shape]||SHAPES.tall,cols=W>H?2:1,rtl=document.dir==='rtl',P=Math.round(Math.min(W,H)*0.05);
   const FONT='-apple-system,"SF Pro Text","Segoe UI",Roboto,"Noto Sans",sans-serif';
   const cv=document.createElement('canvas');cv.width=W;cv.height=H;
-  const ctx=cv.getContext('2d'),items=guideItems(shape!=='tall'),title=t('gTitle')+' · '+t(isApp()?'tApp':'tWeb');
+  const ctx=cv.getContext('2d'),items=guideItems(shape!=='tall'),title=t('gTitle')+' · '+t('tApp');
   const lay=f=>{
     const num=Math.round(f*1.4),gap=Math.round(f*0.55),lh=Math.round(f*1.25),tagH=Math.round(f*0.95),ind=num+Math.round(f*0.5);
     const colW=(W-P*2-(cols-1)*P)/cols;
@@ -820,7 +824,7 @@ function drawGuide(shape){
 }
 async function buildPip(){
   if(!PIP_OK)return;
-  const shape=pipShape(),key=L+isApp()+shape;if(key===pipKey&&pipURL)return;
+  const shape=pipShape(),key=L+shape;if(key===pipKey&&pipURL)return;
   const run=++pipRun,btn=$('pipBtn');btn.disabled=true;$('pipL').textContent=t('gPrep');
   try{
     const cv=drawGuide(shape),ctx=cv.getContext('2d'),stream=cv.captureStream(10);
@@ -870,7 +874,6 @@ if(PIP_OK){
 const TABS=[$('tabWeb'),$('tabApp')];
 function pickTab(b,focus){
   for(const x of TABS){const on=x===b;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;$(x.getAttribute('aria-controls')).hidden=!on}
-  queuePip();
   if(focus)b.focus();
 }
 TABS.forEach((b,i)=>{
