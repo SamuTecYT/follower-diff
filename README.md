@@ -150,6 +150,8 @@ English, Español, Português, Français, Deutsch, Italiano, Русский, Tü
 ---
 
 ## What's new / Novedades (v3.0)
+- **Floating guide on phones**: tap *Turn on floating guide* and the steps stay on top of Instagram in a small window (picture-in-picture), so you don't have to switch back and forth. It's a short video made inside your phone; nothing is sent anywhere · **Guía flotante en el móvil**: toca *Activar guía flotante* y los pasos se quedan encima de Instagram en una ventanita (imagen en imagen), sin ir y volver. Es un vídeo corto hecho dentro de tu teléfono; no se envía nada
+- Clearer **In the app** tab: tab icons, stronger selected state in light and dark, drawn menu icon, the 2 steps to change highlighted · Pestaña **En la app** más clara: iconos en las pestañas, selección más visible en claro y oscuro, icono del menú dibujado, los 2 pasos a cambiar resaltados
 - **One clear guide in 3 steps** (request · download · upload) instead of two separate lists · **Una sola guía clara en 3 pasos** (pedir · descargar · subir) en lugar de dos listas separadas
 - **On the web / In the app tabs**, each with its own step-by-step, now visible on computers too; phones open on "In the app" · **Pestañas «En la web» / «En la app»**, cada una con su paso a paso, ahora también visibles en el ordenador; en el móvil se abre en «En la app»
 - The 2 settings you must change are marked **Change this** · Las 2 opciones que hay que cambiar llevan la marca **Cambia esto**
