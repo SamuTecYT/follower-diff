@@ -49,6 +49,7 @@ Instagram lets you download your own data, including your list of followers. Fol
 
 - **Who started following you** since last time
 - **Who unfollowed you** since last time
+- **Followed you again**: if someone unfollows you and later follows you again, the app tells you, with Instagram's date (it even notices when they left and came back between two files)
 - **Accounts that show up again**: if Instagram left someone out of an earlier file, the app uses Instagram's own follow date to list them apart instead of calling them new
 - **Who you follow that doesn't follow you back**
 - **Who follows you that you don't follow back**
@@ -113,6 +114,7 @@ Instagram te deja descargar tus propios datos, incluida tu lista de seguidores. 
 
 - **Quién te empezó a seguir** desde la última vez
 - **Quién te dejó de seguir**
+- **Te volvieron a seguir**: si alguien te deja de seguir y luego vuelve, el programa te avisa, con la fecha de Instagram (lo nota incluso si se fue y volvió entre dos archivos)
 - **Cuentas que vuelven a aparecer**: si Instagram dejó a alguien fuera de un archivo anterior, el programa usa la fecha de Instagram para separarlo en vez de decir que es nuevo
 - **A quién sigues y no te sigue**
 - **Quién te sigue y tú no le sigues**
