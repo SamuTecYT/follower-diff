@@ -141,7 +141,10 @@ English, Español, Português, Français, Deutsch, Italiano, Русский, Tü
 
 ---
 
-## What's new / Novedades (v2.7)
+## What's new / Novedades (v2.8)
+- **"What to tap" list** right under the request buttons: the 3 exact steps on Instagram's export screen, always visible (Instagram doesn't allow any link to pre-tick the options) · Lista **«Qué tocar»** justo debajo de los botones: los 3 pasos exactos en la pantalla de exportación de Instagram, siempre a la vista (Instagram no permite que un enlace deje las opciones marcadas)
+
+## v2.7
 - Clearer **Step 1** card: request your file **on the web** (takes you straight there) or **in the Instagram app** (no sign-in needed), with a note on why signing in is safe · Tarjeta **Paso 1** más clara: pide tu archivo **desde la web** (te lleva directo) o **desde la app de Instagram** (sin iniciar sesión), con una nota de por qué iniciar sesión es seguro
 
 ## v2.6
